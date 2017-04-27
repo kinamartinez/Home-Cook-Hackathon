@@ -1,0 +1,37 @@
+<!---->
+<div class="col-md-5 pull-right">
+    <!-- Creates Main Panel -->
+    <div class="panel panel-default">
+        <!-- Panel Title -->
+        <div class="panel-heading">
+            <h2 class="panel-title text-center">What do you feel like eating today? <span></span></h2>
+        </div>
+        <!-- Panel Body -->
+        <div class="panel-body modal-open" >
+            <!-- Creates Form (novalidate disables HTML validation, Angular will control) -->
+            <form name="addForm">
+                <!-- Text Boxes-->
+                <div ng-repeat="hardCodeUser in hardCodeUsers" class="form-group col-md-12 pic well">
+
+                        <span class="modal-open">
+                             <h4><strong>{{hardCodeUser.name}}</strong></h4>
+
+                            <strong> Type Of Food:</strong> {{hardCodeUser.type}}  -   {{hardCodeUser.dish}}
+                             <br>
+                            <i class="fa fa-cutlery" aria-hidden="true"></i>    {{hardCodeUser.dietaryOptions}}
+                            <br>
+                             <i class="fa fa-money" aria-hidden="true"></i>  Price  {{hardCodeUser.Price}} NIS
+                            <br>
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>    {{hardCodeUser.locationHC}}
+                            <br>
+                            <a href="/#/orderForm"><button class="btn btn-danger" type="button"><i class="fa fa-credit-card"
+                                                                             aria-hidden="true"></i>  Start Order</button></a>
+                            </span>
+                    <div class="col-md-6 pull-left"><img class="fotos" ng-src="{{hardCodeUser.img}}"
+                                                         style="width:200px; height:150px">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

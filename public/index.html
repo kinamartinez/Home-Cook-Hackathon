@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- Declares meanMapApp as the starting Angular module -->
+<html class="no-js" ng-app="meanMapApp">
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <title>Home Cooks</title>
+    <meta name="description" content="An example demonstrating Google Map integration with MEAN Apps">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="navbarStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" type="text/css">
+    <!-- Holder JS -->
+    <script src="../bower_components/holderjs/holder.js"></script>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARNSOYROPJTbzUN5bAgOPZ9fL_DkuPhIo"></script>
+    <!--&lt;!&ndash; Modernizr &ndash;&gt;-->
+    <!--<script src="../bower_components/modernizr/bin/modernizr"></script>-->
+
+</head>
+<body>
+
+<nav id="header" class="navbar navbar-fixed-top">
+    <div id="header-container" class="container navbar-container">
+        <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a id="brand" href="/" class="navbar-brand">The Home Cook</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="false"><a href="/menu">Food Menu</a></li>
+                <li active><a href="/#/join">Join the Team</a></li>
+                <li disabled><a href="/#/find">Find Some Cooks</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="false"><a href="/login">Login</a></li>
+                <li><a href="/signup">Create Account</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <!-- Links to the two menu views included -->
+
+        </ul>
+          </div>
+    <!-- Map and Side Panel -->
+    <div class="row content">
+        <!-- Google Map -->
+        <div class="col-md-7">
+            <div id="map"  style="width:600px; height:600px"></div>
+        </div>
+        <!-- Side Panel -->
+        <ui-view></ui-view>
+        <!--<div ng-view></div>-->
+    </div>
+    <hr/>
+    <!-- Footer -->
+    <div class="footer">
+        <p class="text-center"><span class="glyphicon glyphicon-check"></span>
+           <a href="https://github.com/">Github Repo</a></p>
+    </div>
+</div>
+<!-- Angular Scripts -->
+<!-- JS Source -->
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/addCtrl.js"></script>
+<script src="js/gservice.js"></script>
+<script src="js/queryCtrl.js"></script>
+<script src="js/foodController.js"></script>
+<script src="js/navbarFunc.js"></script>
+
+</body>
+</html>
