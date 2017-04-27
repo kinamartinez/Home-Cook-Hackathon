@@ -13,7 +13,7 @@ const authRoutes = require('./app/authRoutes.js');
 // Express Configuration
 // -----------------------------------------------------
 // Sets the connection to MongoDB
-mongoose.connect("PROCESS.ENV.CONNECTION_STRING");
+mongoose.connect(process.env.CONNECTION_STRING);
 
 app.use(passport.initialize());
 
