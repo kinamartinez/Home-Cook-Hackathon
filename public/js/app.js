@@ -5,7 +5,7 @@ var app = angular.module('meanMapApp', [
     'queryCtrl',
     'geolocation',
     'gservice',
-    'foodController',
+    'foodController'
     // 'auth0.lock',
     // 'angular-jwt',
     // 'angular-storage',
@@ -27,7 +27,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider','$provid
         // Join Team Control Panel
         .state('map.join', {
             url: '/join',
-            controller: 'addCtrl',
+            controller: 'authCtrl',
             templateUrl: 'partials/addForm.html',
 
             // Find Home Cooks Control Panel
@@ -65,7 +65,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider','$provid
             templateUrl: 'partials/queryForm.html'
             // All else forward to the Join Home Cook Team Control Panel
         })
-
+        .state('register', {
+            url: '/register',
+            templateUrl: '/partials/userRegistration.html',
+            controller: 'authCtrl'
+        })
+        .state('login', {
+        url: '/login',
+        templateUrl: '/partials/login.html',
+        controller: 'authCtrl'
+        })
     // lockProvider.init({
     //     clientID: '55GqM7lzjXdbdFhkBlb7BSUQY2IvRUVk',
     //     domain: 'kinamartinez.eu.auth0.com',

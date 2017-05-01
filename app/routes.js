@@ -20,26 +20,11 @@ module.exports = function (app) {
 
             // If no errors are found, it responds with a JSON of all users
             res.json(users);
+            console.log(users)
         });
     });
 
-    // POST Routes
-    // --------------------------------------------------------
-    // Provides method for saving new users in the dbs
-    app.post('/users', function (req, res) {
 
-        // Creates a new User based on the Mongoose schema and the post bo.dy
-        const newuser = new User(req.body);
-
-        // New User is saved in the db.
-        newuser.save(function (err) {
-            if (err)
-                res.send(err);
-
-            // If no errors are found, it responds with a JSON of the new user
-            res.json(req.body);
-        });
-    });
 
     // Retrieves JSON records for all users who meet a certain set of query conditions
     app.post('/query/', function (req, res) {
