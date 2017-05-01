@@ -18,13 +18,13 @@ var UserSchema = new Schema({
 
     email: {type: String},
     fullname: {type: String},
-    username: {type: String, required: true},
+    username: {type: String},
     password: String,
     cook: {type: Boolean},
     foods: [FoodSchema],
     //favlang: {type: String, required: true},
-    latitude: Number,
-    longitude: Number, // [Long, Lat]
+    latitude: String,
+    longitude: String, // [Long, Lat]
     htmlverified: String,
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},

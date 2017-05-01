@@ -6,7 +6,12 @@ app.factory('authFactory', function($http) {
   auth.register = function(user) {
     return $http.post('/users/register', user)
       .then(function(response) {
-        auth.currentUser.username = angular.copy(response.data)
+          console.log('******user******')
+          console.log(user)
+          console.log('******response******')
+          console.log(response)
+        auth.currentUser.username = angular.copy(response.data.username)
+
       });;
   };
 

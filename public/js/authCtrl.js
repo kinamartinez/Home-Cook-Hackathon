@@ -37,6 +37,7 @@ app.controller('authCtrl', function($scope, authFactory, $state, $rootScope, geo
             $scope.formData.htmlverified = "Hey (You are not in this location...)";
         });
     });
+
   $scope.register = function() {
     authFactory.register($scope.user)
       .then(function() {

@@ -14,10 +14,10 @@ const methodOverride = require('method-override');
 var userRoutes = require('./app/authRoutes');
 var User = require("./app/model");
 
-mongoose.connect("mongodb://localhost/trial");
+
 
 const app = express();
-
+mongoose.connect("mongodb://localhost/trial2");
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.urlencoded({extended: true}));               // parse application/x-www-form-urlencoded
 app.use(bodyParser.text());                                     // allows bodyParser to look at raw text
