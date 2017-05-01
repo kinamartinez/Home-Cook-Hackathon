@@ -2,19 +2,30 @@
 var mongoose    = require('mongoose');
 var Schema      = mongoose.Schema;
 
+var FoodSchema = new Schema({
+    dish: {type: String, required: true},
+    description: {type: String, required: true},
+    price: {type: Number, required: true},
+    type: {type: String, required: true},
+    img: {type: String, required: true},
+    options: {type: String, required: true}
+});
 // Creates a User Schema. This will be the basis of how user data is stored in the db
 var UserSchema = new Schema({
+
+    email: {type: String, required: true},
+    fullname: {type: String, required: true},
     username: {type: String, required: true},
-    gender: {type: String, required: true},
-    // age: {type: Number, required: true},
-    favlang: {type: String, required: true},
+    cook: {type: Boolean, default: false},
+    foods: [FoodSchema],
+    //favlang: {type: String, required: true},
     location: {type: [Number], required: true}, // [Long, Lat]
     htmlverified: String,
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},
     socialId: String,
+    rating: {type: Number},
     provider: String,
-    email: String,
     loginCount: Number
 });
 

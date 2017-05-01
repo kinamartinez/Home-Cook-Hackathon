@@ -114,3 +114,61 @@
     overflow-y: scroll;
     max-height: 550px;
 }
+.glyphicon-thumbs-down,
+.glyphicon-thumbs-up {
+    cursor: pointer;
+}
+
+.cover {
+    background: url('https://www.dropbox.com/home/hackaton?preview=cover.jpg') no-repeat center fixed;
+    background-size: cover;
+    height: 700px;
+}
+
+#hometext {
+    text-align: center;
+    padding-top: 15%;
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+    vertical-align:middle;
+    font-family: Lobster;
+    color: white;
+
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 7em;
+}
+
+hr {
+    width: 550px;
+    border-top: 3px solid #f8f8f8;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+}
+
+.btn-md {
+    margin: 20px;
+    text-align: center;
+    padding: 12px 12px;
+}
+
+#us {
+
+    font-family: Lobster;
+    text-align: center;
+}
+
+section {
+    width:25%;
+    background: white;
+    border: 1px black solid;
+    box-sizing: border-box;
+    padding: 20px;
+
+}
+
+.thumbnail {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}

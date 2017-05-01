@@ -1,6 +1,6 @@
 // Creates the addCtrl Module and Controller. Note that it depends on 'geolocation' and 'gservice' modules.
-const queryCtrl = angular.module('queryCtrl', ['geolocation', 'gservice']);
-queryCtrl.controller('queryCtrl', function ($scope, $log, $http, $rootScope, geolocation, gservice) {
+angular.module('queryCtrl', ['geolocation', 'gservice'])
+    .controller('queryCtrl', function ($scope, $log, $http, $rootScope, geolocation, gservice) {
 
     // Initializes Variables
     // ----------------------------------------------------------------------------
@@ -38,9 +38,6 @@ queryCtrl.controller('queryCtrl', function ($scope, $log, $http, $rootScope, geo
             longitude: parseFloat($scope.formData.longitude),
             latitude: parseFloat($scope.formData.latitude),
             distance: parseFloat($scope.formData.distance),
-            male: $scope.formData.male,
-            female: $scope.formData.female,
-            other: $scope.formData.other,
             favlang: $scope.formData.favlang,
             reqVerified: $scope.formData.verified,
 

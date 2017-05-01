@@ -13,12 +13,16 @@ const authRoutes = require('./app/authRoutes.js');
 // Express Configuration
 // -----------------------------------------------------
 // Sets the connection to MongoDB
-mongoose.connect(process.env.CONNECTION_STRING);
+// mongoose.connect(process.env.CONNECTION_STRING);
+// app.use(passport.initialize());
 
-app.use(passport.initialize());
+//localhost:
+mongoose.connect("mongodb://localhost/MeanMapApp");
+
 
 // Logging and Parsing
 app.use(express.static(__dirname + '/public'));                 // sets the static files location to public
+app.use(express.static(__dirname + '/node_modules'));
 app.use('/bower_components', express.static(__dirname + '/bower_components')); // Use BowerComponents
 app.use(morgan('dev'));                                         // log with Morgan
 app.use(bodyParser.json());                                     // parse application/json
@@ -33,6 +37,20 @@ require('./app/routes.js')(app);
 
 
 
+app.all('[^.]+', function(req, res) {
+    res.sendFile(__dirname + "/public/index.html")
+});
+
+
+// main error handler
+// warning - not for use in production code!
+app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.send({
+        message: err.message,
+        error: err
+    });
+});
 // Listen
 // -------------------------------------------------------
 app.listen(port);

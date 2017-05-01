@@ -76,6 +76,7 @@ angular.module('gservice', [])
 
             // Loop through all of the JSON entries provided
             // as response of call to API
+            console.log(response)
             for (var i = 0; i < response.length; i++) {
 
                 var user = response[i];
@@ -83,9 +84,8 @@ angular.module('gservice', [])
                 // Create popup windows for each record
                 var contentString =
                     '<p><b>Username</b>: ' + user.username +
-                    // '<br><b>Age</b>: ' + user.age +
-                    '<br><b>Gender</b>: ' + user.gender +
-                    '<br><b>Type of food</b>: ' + user.favlang +
+                    '<br><b>Email</b>: ' + user.email +
+                    '<br><b>Type of food</b>: ' + "aqui va algo" +
                     '</p>';
 
                 // Converts each of the JSON records into Google Maps

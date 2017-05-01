@@ -27,41 +27,23 @@
                     <label for="fullname">Full Name </label>
                     <input type="text" class="form-control" id="fullname" placeholder="First Name and Last Name" ng-model="formData.fullname" required>
                 </div>
+                <div class="form-group">
+                    <label for="email">Email </label>
+                    <input type="text" class="form-control" id="email" placeholder="youremail@provider.com" ng-model="formData.email" required>
+                </div>
 
-                <label class="radio control-label">Gender</label>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="radiomale" value="Male" ng-model="formData.gender">
-                        Male
-                    </label>
-                </div>
-                <div class="radio" required>
-                    <label>
-                        <input type="radio" name="optionsRadios" id="radiofemale" value="Female" ng-model="formData.gender">
-                        Female
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="radioother" value="What's it to ya?" ng-model="formData.gender">
-                        What's it to ya?
-                    </label>
-                </div>
-                <!--<div class="form-group">-->
-                    <!--<label for="age">Age</label>-->
-                    <!--<input type="number" class="form-control" id="age" placeholder="72" ng-model="formData.age" required>-->
-                <!--</div>-->
                 <div class="form-group">
-                    <label for="language">Type of food</label>
-                    <input type="text" class="form-control" id="language" placeholder="Type of food" ng-model="formData.favlang" required>
+                    <label for="password">Password </label>
+                    <input type="password" class="form-control" id="password" placeholder="*********" ng-model="formData.password" required>
+                </div>
+
+                <div class="form-group">
+
+                    <input type="hidden" class="form-control" id="latitude" value="32.04" ng-model="formData.latitude" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="latitude">Latitude</label>
-                    <input type="text" class="form-control" id="latitude" value="32.04" ng-model="formData.latitude" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="longitude">Longitude</label>
-                    <input type="text" class="form-control" id="longitude" value="34.46" ng-model="formData.longitude" readonly>
+
+                    <input type="hidden" class="form-control" id="longitude" value="34.46" ng-model="formData.longitude" readonly>
                 </div>
                 <div class="form-group">
                     <!-- Note RefreshLoc button tied to addCtrl. This requests a refresh of the HTML5 verified location. -->
