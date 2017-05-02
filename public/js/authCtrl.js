@@ -48,7 +48,7 @@ app.controller('authCtrl', function($scope, authFactory, $state, $rootScope, geo
             });
     };
     $scope.registerCook = function() {
-        authFactory.register($scope.user)
+        authFactory.registerCook($scope.user)
             .then(function() {
                 console.log($scope.user)
                 $state.go('home');
