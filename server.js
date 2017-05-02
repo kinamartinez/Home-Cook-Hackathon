@@ -12,6 +12,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 var userRoutes = require('./app/authRoutes');
+var accountRoutes = require('./app/authRoutes');
 var User = require("./app/model");
 
 
@@ -38,6 +39,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use('/users', userRoutes);
+app.use('/account', accountRoutes);
+
 // Logging and Parsing
 app.use(express.static(__dirname + '/public')); // sets the static files location to public
 app.use(express.static(__dirname + '/node_modules'));
