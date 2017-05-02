@@ -3,13 +3,18 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var plm = require('passport-local-mongoose')
 
+var avaliabilitySchema = new Schema({
+
+});
+
 var FoodSchema = new Schema({
     dish: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
     type: { type: String, required: true },
     img: { type: String, required: true },
-    options: { type: String, required: true }
+    options: { type: String, required: true },
+    avaliability: [avaliabilitySchema]
 });
 
 
@@ -21,7 +26,7 @@ var UserSchema = new Schema({
     username: { type: String },
     password: String,
     cook: Boolean,
-    foods: [FoodSchema],
+    foods: [],
     location: [Number],
     //favlang: {type: String, required: true},
     latitude: Number,

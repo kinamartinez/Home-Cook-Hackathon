@@ -45,6 +45,8 @@
                     <!-- Note RefreshLoc button tied to addCtrl. This requests a refresh of the HTML5 verified location. -->
                     <input type="hidden" class="form-control" id="verified" placeholder="Nope (Thanks for spamming my map...)" ng-model="user.htmlverified" readonly>
                 </div>
+                <button type="submit" class="btn btn-danger btn-block" ng-disabled="addForm.$invalid">Submit</button>
+            </form>
         </div>
 
 
@@ -52,8 +54,7 @@
 
 
         <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
-        <button type="submit" class="btn btn-danger btn-block" ng-disabled="addForm.$invalid">Submit</button>
-        </form>
+
     </div>
 </div>
 </div>

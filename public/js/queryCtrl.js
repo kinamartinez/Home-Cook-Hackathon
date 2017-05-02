@@ -44,7 +44,7 @@ angular.module('queryCtrl', ['geolocation', 'gservice'])
             };
 
             // Post the queryBody to the /query POST route to retrieve the filtered results
-            $http.post('/users/query', queryBody)
+            $http.post('/query/', queryBody)
 
             // Store the filtered results in queryResults
             .success(function(queryResults) {

@@ -35,7 +35,7 @@ router.post('/registerCook', function(req, res, next) {
         cook: true,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
-        location: [req.body.latitude, req.body.longitude],
+        location: [req.body.longitude, req.body.latitude],
         htmlverified: req.body.htmlverified,
         fullname: req.body.fullname
     }), req.body.password, function(err, user) {
