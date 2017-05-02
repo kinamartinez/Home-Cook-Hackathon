@@ -1,6 +1,7 @@
 // Pulls Mongoose dependency for creating schemas
 var mongoose    = require('mongoose');
 var Schema      = mongoose.Schema;
+var plm = require('passport-local-mongoose')
 
 var FoodSchema = new Schema({
     dish: {type: String, required: true},
@@ -10,16 +11,20 @@ var FoodSchema = new Schema({
     img: {type: String, required: true},
     options: {type: String, required: true}
 });
+
+
 // Creates a User Schema. This will be the basis of how user data is stored in the db
 var UserSchema = new Schema({
 
-    email: {type: String, required: true},
-    fullname: {type: String, required: true},
-    username: {type: String, required: true},
-    cook: {type: Boolean, default: false},
+    email: {type: String},
+    fullname: {type: String},
+    username: {type: String},
+    password: String,
+    cook: {type: Boolean},
     foods: [FoodSchema],
     //favlang: {type: String, required: true},
-    location: {type: [Number], required: true}, // [Long, Lat]
+    latitude: String,
+    longitude: String, // [Long, Lat]
     htmlverified: String,
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},
@@ -41,6 +46,6 @@ UserSchema.pre('save', function(next){
 
 // Indexes this schema in 2dsphere format (critical for running proximity searches)
 UserSchema.index({location: '2dsphere'});
-
+UserSchema.plugin(plm);
 // Exports the UserSchema for use elsewhere. Sets the MongoDB collection to be used as: "scotch-users"
-module.exports = mongoose.model('scotch-user', UserSchema);
+module.exports = mongoose.model('user', UserSchema);

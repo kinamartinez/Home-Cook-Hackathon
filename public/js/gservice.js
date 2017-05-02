@@ -93,15 +93,15 @@ angular.module('gservice', [])
                 // (Note: [Lat,Lng] format)
                 locations.push({
 
-                    latlon: new google.maps.LatLng(user.location[1], user.location[0]),
+                    latlon: new google.maps.LatLng(user.latitude, user.longitude),
                     message: new google.maps.InfoWindow({
                         content: contentString,
                         maxWidth: 320
                     }),
                     username: user.username,
-                    gender: user.gender,
-                    // age: user.age,
-                    favlang: user.favlang
+                    // gender: user.gender,
+                    // // age: user.age,
+                    // favlang: user.favlang
 
                 }); // end locations.push()
 
