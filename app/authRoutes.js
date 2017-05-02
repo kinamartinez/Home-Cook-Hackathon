@@ -67,5 +67,7 @@ router.get('/currentuser', function(req, res) {
     } else {
         res.send(null)
     }
+    res.status(401).send('Doh');
 });
+
 module.exports = router;
