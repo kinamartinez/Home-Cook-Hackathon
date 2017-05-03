@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var plm = require('passport-local-mongoose')
 
 var avaliabilitySchema = new Schema({
-
+ text: String
 });
 
 var FoodSchema = new Schema({
@@ -26,7 +26,7 @@ var UserSchema = new Schema({
     username: { type: String },
     password: String,
     cook: Boolean,
-    foods: [],
+    foods: [FoodSchema],
     location: [Number],
     //favlang: {type: String, required: true},
     latitude: Number,
