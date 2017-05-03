@@ -53,5 +53,5 @@ UserSchema.pre('save', function(next) {
 // Indexes this schema in 2dsphere format (critical for running proximity searches)
 UserSchema.index({ location: '2dsphere' });
 UserSchema.plugin(plm);
-// Exports the UserSchema for use elsewhere. Sets the MongoDB collection to be used as: "scotch-users"
+// Exports the UserSchema for use elsewhere. Sets the MongoDB collection to be used as: "user"
 module.exports = mongoose.model('user', UserSchema);

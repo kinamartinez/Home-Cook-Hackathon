@@ -71,7 +71,10 @@ router.get('/currentuser', function(req, res) {
     } else {
         res.send(null)
     }
+    res.status(401).send('Doh');
 });
+
+
 
 router.post('/query/', function(req, res) {
 
@@ -122,4 +125,5 @@ router.post('/query/', function(req, res) {
         res.json(users);
     });
 });
+
 module.exports = router;

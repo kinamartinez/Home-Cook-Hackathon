@@ -32,11 +32,24 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
 
                 // Find Home Cooks Control Panel
             })
-            .state('list', {
-                url: '/list',
-                controller: 'foodController',
-                templateUrl: 'partials/list.html',
 
+            .state('map.list', {
+                url: '/list',
+                templateUrl: 'partials/list.html',
+                controller: 'foodController'
+                // All else forward to the Join Home Cook Team Control Panel
+            })
+            .state('profile', {
+                url: '/profile',
+                controller: 'foodController',
+                templateUrl: 'partials/profile.html',
+
+                // All else forward to the Join Home Cook Team Control Panel
+            })
+            .state('profile.reviewForm', {
+                url: '/reviewForm',
+                templateUrl: 'partials/reviewForm.html',
+                controller: 'foodController'
                 // All else forward to the Join Home Cook Team Control Panel
             })
             .state('orderForm', {
@@ -50,11 +63,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/home',
                 templateUrl: 'js/components/home/home.tpl.html',
             })
-            .state('profile', {
-                url: '/profile',
-                templateUrl: 'js/components/profile/profile.tpl.html',
-                controller: 'profileController as user'
-            })
+
             .state('map', {
                 url: '/map',
                 templateUrl: 'partials/map.html',
@@ -75,7 +84,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/login',
                 templateUrl: '/partials/login.html',
                 controller: 'authCtrl'
-            })
+            });
             // lockProvider.init({
             //     clientID: '55GqM7lzjXdbdFhkBlb7BSUQY2IvRUVk',
             //     domain: 'kinamartinez.eu.auth0.com',
