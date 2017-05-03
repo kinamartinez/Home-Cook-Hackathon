@@ -15,12 +15,12 @@
         <div class="panel-body">
 
             <!-- Creates Form (novalidate disables HTML validation, Angular will control) -->
-            <form ng-submit="register()" novalidate>
+            <form ng-submit="registerCook()" novalidate>
 
                 <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
                 <div class="form-group">
                     <label for="username">Username <span class="badge">All fields required</span></label>
-                    <input type="text" class="form-control"  placeholder="Username" ng-model="user.username" required></input>
+                    <input type="text" class="form-control" placeholder="Username" ng-model="user.username" required></input>
                 </div>
 
                 <div class="form-group">
@@ -37,23 +37,24 @@
                     <input type="password" class="form-control" placeholder="*********" ng-model="user.password" required>
                 </div>
 
-                <div class="form-group">
 
-                    <input type="text" class="form-control" id="latitude" value="32.04" ng-model="user.latitude" readonly>
-                </div>
-                <div class="form-group">
+                <input type="hidden" class="form-control" id="latitude" value="32.04" ng-model="user.latitude" readonly>
+                <input type="hidden" class="form-control" id="longitude" value="34.46" ng-model="user.longitude" readonly>
 
-                    <input type="text" class="form-control" id="longitude" value="34.46" ng-model="user.longitude" readonly>
-                </div>
                 <div class="form-group">
                     <!-- Note RefreshLoc button tied to addCtrl. This requests a refresh of the HTML5 verified location. -->
-                    <label for="verified">Verified Location? <span></span></label>
-                    <input type="text" class="form-control" id="verified" placeholder= "Nope (Thanks for spamming my map...)" ng-model="user.htmlverified" readonly>
+                    <input type="hidden" class="form-control" id="verified" placeholder="Nope (Thanks for spamming my map...)" ng-model="user.htmlverified" readonly>
                 </div>
-
-                <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
                 <button type="submit" class="btn btn-danger btn-block" ng-disabled="addForm.$invalid">Submit</button>
             </form>
         </div>
+
+
+
+
+
+        <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
+
     </div>
+</div>
 </div>
