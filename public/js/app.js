@@ -27,38 +27,45 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
         $stateProvider
         // Join Team Control Panel
             .state('map.join', {
-            url: '/join',
-            controller: 'authCtrl',
-            templateUrl: 'partials/addForm.html',
+                url: '/join',
+                controller: 'authCtrl',
+                templateUrl: 'partials/addForm.html',
 
-            // Find Home Cooks Control Panel
-        })
+                // Find Home Cooks Control Panel
+            })
 
-        .state('map.list', {
+            .state('map.list', {
                 url: '/list',
                 templateUrl: 'partials/list.html',
-                controller: 'foodController'
-                    // All else forward to the Join Home Cook Team Control Panel
-            })
-            .state('profile', {
-                url: '/profile',
                 controller: 'foodController',
-                templateUrl: 'partials/profile.html',
-                // All else forward to the Join Home Cook Team Control Panel
-            })
-            .state('profile.reviewForm', {
-                url: '/reviewForm',
-                templateUrl: 'partials/reviewForm.html',
-
-                controller: 'reviewController',
                 resolve: {
-                    reviews: function ($http) {
-                        return $http.get('/data');
+                    users: function ($http) {
+                        return $http.get('/users')
+                            .catch(function (err) {
+                                console.log(err)
+                            }); // post es la ruta que le dimos en el server.js
                     }
                 }
-
-
+                // All else forward to the Join Home Cook Team Control Panel
             })
+            .state('profile', {
+                url: '/profile/:id',
+                templateUrl: 'partials/profile.html',
+                controller: 'reviewController',
+                resolve: {
+                    relevantCook: ["authFactory", "$stateParams", "$http", function (authFactory, $stateParams, $http) {
+                        let userId = $stateParams.id;
+                        console.log("getting review from: ", "/review/" + userId);
+                        return $http.get("/review/" + userId).then(function (theWholeUserObj) {
+                            console.log("the next obj comes from app.js - Profile State");
+                            console.log(theWholeUserObj.data);
+                            return theWholeUserObj.data;
+                        })
+                    }]
+                }
+            })
+
+
             .state('orderForm', {
                 url: '/orderForm',
                 controller: 'foodController',
@@ -71,7 +78,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 templateUrl: 'js/components/home/home.tpl.html',
             })
 
-        .state('map', {
+            .state('map', {
                 url: '/map',
                 templateUrl: 'partials/map.html',
                 controller: 'queryCtrl'
@@ -97,11 +104,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 templateUrl: '/partials/account.html',
                 controller: 'accountCtrl',
                 resolve: {
-                    myData: function($http, $state) {
-                        console.log('yup')
+                    myData: function ($http, $state) {
+                        console.log('yup');
                         return $http.get('/account/updateProfile')
-                            .catch(function(err) {
-                                console.log('yes i am')
+                            .catch(function (err) {
+                                console.log('yes i am');
                                 $state.go('home')
                             })
                     }

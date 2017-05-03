@@ -38,6 +38,8 @@ var UserSchema = new Schema({
     rating: { type: Number },
     provider: String,
     loginCount: Number,
+    cookimg: String,
+    descrip:String,
     reviews: [{type: Schema.Types.ObjectId, ref:'review'}]//population from the reviews schema
 });
 

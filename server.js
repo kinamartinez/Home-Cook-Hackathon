@@ -11,23 +11,41 @@ const port = process.env.PORT || 3000;
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-var userRoutes = require('./app/authRoutes');
-var accountRoutes = require('./app/accountRoutes');
-
-var reviewRoute = require('./app/reviewRoute');
 
 
-var User = require("./app/model");
 
 
+
+
+// Connect to database
+mongoose.connect("mongodb://localhost/trial3");
+
+
+
+
+
+
+// Main app
 
 const app = express();
-mongoose.connect("mongodb://localhost/trial3");
+
 app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.text()); // allows bodyParser to look at raw text
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
+app.use(morgan('dev')); // log with Morgan
 
+
+
+
+
+
+
+
+
+
+
+// Auth + sessions
 
 app.use(expressSession({
     secret: 'yourSecretHere',
@@ -38,14 +56,29 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+var User = require("./app/model");
+
 // Configure passport-local to use user model for authentication
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use('/users', userRoutes);
-app.use('/account', accountRoutes);
-app.use('/review', reviewRoute);
+
+
+
+
+
+
+
+
+
+// Backend / API
+
+var userRoutes = require('./app/authRoutes');
+var accountRoutes = require('./app/accountRoutes');
+
+var reviewRoute = require('./app/reviewRoute');
 
 var ensureAuthenticated = function(req, res, next) {
     if (req.isAuthenticated()) {
@@ -55,27 +88,40 @@ var ensureAuthenticated = function(req, res, next) {
     }
 };
 
-
-app.use(express.static(__dirname + '/public')); // sets the static files location to public
-app.use(express.static(__dirname + '/node_modules'));
-app.use('/bower_components', express.static(__dirname + '/bower_components')); // Use BowerComponents
-app.use(morgan('dev')); // log with Morgan
-
-
 app.use('/users', userRoutes);
+app.use('/account', accountRoutes);
+app.use('/review', reviewRoute);
 app.use('/account', ensureAuthenticated, accountRoutes);
+
 
 // Logging and Parsing
 
 // Routes
 // ------------------------------------------------------
-require('./app/routes.js')(app);
+const registerRoutes = require('./app/routes.js');
+
+registerRoutes(app);
 
 
+
+
+// Front end server
+
+app.use(express.static(__dirname + '/public')); // sets the static files location to public
+app.use(express.static(__dirname + '/node_modules'));
+app.use('/bower_components', express.static(__dirname + '/bower_components')); // Use BowerComponents
 
 app.all('[^.]+', function(req, res) {
     res.sendFile(__dirname + "/public/index.html")
 });
+
+
+
+
+
+
+
+
 
 
 // main error handler
@@ -87,6 +133,16 @@ app.use(function(err, req, res, next) {
         error: err
     });
 });
+
+
+
+
+
+
+
+
+
+
 // Listen
 // -------------------------------------------------------
 app.listen(port);

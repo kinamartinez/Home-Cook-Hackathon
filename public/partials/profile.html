@@ -1,26 +1,23 @@
-<div ng-repeat="hardCodeUser in hardCodeUsers" class="container">
+<div ng-repeat="user in users track by $index" class="container">
     <div class="row profile">
         <div class="col-md-3">
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    <img class="img-responsive" alt="" ng-src="{{hardCodeUser.cookimg}}">
+                    <img class="img-responsive" alt="" ng-src="{{user.cookimg}}">
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        {{hardCodeUser.fullname}}
+                        {{user.fullname}}
                     </div>
                     <div class="profile-usertitle-job">
-                        Type of Food: {{hardCodeUser.type}}
+                        Type of Food: {{user.type}}
                     </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
-                <div class="well">
-                    <p>"{{hardCodeUser.descrip}}"</p>
-                </div>
                 <div class="profile-userbuttons">
                     <button type="button" class="btn btn-success btn-sm">Follow</button>
                     <button type="button" class="btn btn-danger btn-sm">Message</button>
@@ -30,20 +27,53 @@
                 <div class="profile-usermenu">
                     <ul class="nav">
                         <li class="active">
-                            <a ui-sref=".reviewForm">
-                                <i class="glyphicon glyphicon-home"></i>
-                                Add Review </a>
-                            <ui-view></ui-view>
+                            <a href="#">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                                Add a Review </a>
                         </li>
-
-
                     </ul>
+                    <form ng-submit="addReview()">
+                        <div class="form-group">
+                                    <textarea rows="7" cols="39" type="text" class="form-control"
+                                              placeholder="Add review..." ng-model="text"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary pull-right">Go!</button>
+                    </form>
                 </div>
                 <!-- END MENU -->
             </div>
         </div>
+        <div class="col-md-9">
+            <div class="profile-content">
+                <div class="row-fluid">
+                    <div class="col-sm-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Review</h3>
+                            </div><!--/panel-heading-->
+                            <div class="panel-body">
+                                {{review.text}}
+                                <!--<small>-->
+                                <!--<span>{{review.author}}</span></small>-->
+                                <!--/author schema -->
 
+                            </div><!--/panel-body-->
+                            <div class="panel-footer clearfix">
+                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                <span class="glyphicon glyphicon-thumbs-down"></span>
+                                <span ng-click="downvote(review._id)"> </span>
+                                <i ng-click="deleteReview(review)"
+                                   class="fa fa-trash pull-right"
+                                   aria-hidden="true"></i>
+
+                            </div><!--/panel-footer-->
+                        </div><!--/panel-->
+                    </div><!--/col-sm-6-->
+                </div>
+            </div>
+        </div>
     </div>
-    <br>
-    <br>
 </div>
+
+<br>
+<br>

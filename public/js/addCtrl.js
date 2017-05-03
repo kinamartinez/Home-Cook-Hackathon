@@ -2,6 +2,8 @@
 const addCtrl = angular.module('addCtrl', ['geolocation']);
 addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, gservice){
 
+
+    
     // Initializes Variables
     // ----------------------------------------------------------------------------
     $scope.formData = {};
