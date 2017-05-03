@@ -5,7 +5,7 @@ const expressSession = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
-const plm = require('passport-local-mongoose')
+const plm = require('passport-local-mongoose');
     //const passport = require('./app/passport');
 const port = process.env.PORT || 3000;
 const morgan = require('morgan');
@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 var userRoutes = require('./app/authRoutes');
 var accountRoutes = require('./app/authRoutes');
+var reviewRoute = require('./app/reviewRoute');
 var User = require("./app/model");
 
 
@@ -40,6 +41,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use('/users', userRoutes);
 app.use('/account', accountRoutes);
+app.use('/review', reviewRoute);
 
 // Logging and Parsing
 app.use(express.static(__dirname + '/public')); // sets the static files location to public

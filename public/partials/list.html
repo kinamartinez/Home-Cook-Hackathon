@@ -14,13 +14,13 @@
                 <div ng-repeat="hardCodeUser in hardCodeUsers" class="form-group col-md-12 pic well">
 
                     <span>
-                    <a ui-sref="profile"><h4><strong>{{hardCodeUser.name}}</strong></h4></a>
+                    <a ui-sref="profile"><h4><strong>{{hardCodeUser.fullname}}</strong></h4></a>
 
                     <strong> Type Of Food:</strong> {{hardCodeUser.type}} - {{hardCodeUser.dish}}
                     <br>
-                    <i class="fa fa-cutlery" aria-hidden="true"></i> {{hardCodeUser.dietaryOptions}}
+                    <i class="fa fa-cutlery" aria-hidden="true"></i> {{hardCodeUser.options}}
                     <br>
-                    <i class="fa fa-money" aria-hidden="true"></i> Price {{hardCodeUser.Price}} NIS
+                    <i class="fa fa-money" aria-hidden="true"></i> Price {{hardCodeUser.price}} NIS
                     <br>
                     <i class="fa fa-map-marker" aria-hidden="true"></i> {{hardCodeUser.locationHC}}
                     <br>

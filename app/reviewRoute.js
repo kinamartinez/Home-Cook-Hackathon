@@ -46,7 +46,7 @@ router.get('/', function (req, res, next) {
 
 
 router.post('/', function (req, res, next) {
-    Review.create(Object.assign({author: req.user.username}, req.body), function (err, review) {
+    Review.create(Object.assign({author: req.User.username}, req.body), function (err, review) {
         if (err) {
             console.error(err);
             return next(err);
@@ -57,19 +57,19 @@ router.post('/', function (req, res, next) {
     });
 });
 
-router.put('/:reviewid/upvote', function (req, res) {
-    req.review.upvote();
-    req.review.save(function (err, review) {
-        res.send(review);
-    });
-});
-
-router.put('/:postid/downvote',  function (req, res) {
-    req.review.downvote();
-    req.review.save(function (err, review) {
-        res.send(review);
-    });
-});
+// router.put('/:revieswid/upvote', function (req, res) {
+//     req.review.upvote();
+//     req.review.save(function (err, review) {
+//         res.send(review);
+//     });
+// });
+//
+// router.put('/:reviewsid/downvote',  function (req, res) {
+//     req.review.downvote();
+//     req.review.save(function (err, review) {
+//         res.send(review);
+//     });
+// });
 
 
 router.delete('/:reviewid', function (req, res, next) {

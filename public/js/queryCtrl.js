@@ -47,7 +47,7 @@ angular.module('queryCtrl', ['geolocation', 'gservice'])
             $http.post('/query/', queryBody)
 
             // Store the filtered results in queryResults
-            .success(function(queryResults) {
+                .success(function(queryResults) {
 
                     // Query Body and Result Logging
                     console.log("QueryBody:");
@@ -64,32 +64,6 @@ angular.module('queryCtrl', ['geolocation', 'gservice'])
                     console.log('Error ' + queryResults);
                 })
         };
-
-
-        // Post the queryBody to the /query POST route to retrieve the filtered results
-        $http.post('/query', queryBody)
-
-        // Store the filtered results in queryResults
-            .success(function (queryResults) {
-
-                // Query Body and Result Logging
-                console.log("QueryBody:");
-                console.log(queryBody);
-                console.log("QueryResults:");
-                console.log(queryResults);
-// Pass the filtered results to the Google Map Service and refresh the map
-                gservice.refresh(queryBody.latitude, queryBody.longitude, queryResults);
-
-                // Count the number of records retrieved for the panel-footer
-                $scope.queryCount = queryResults.length;
-            })
-            .error(function (queryResults) {
-                console.log('Error ' + queryResults);
-            })
-    };
-
-});
-
         $scope.codeAddress = function() {
             queryBody = {
                 distance: parseFloat($scope.formData.distance),
@@ -100,7 +74,7 @@ angular.module('queryCtrl', ['geolocation', 'gservice'])
             $http.post('/query', queryBody)
 
             // Store the filtered results in queryResults
-            .success(function(queryResults) {
+                .success(function(queryResults) {
 
                     // Query Body and Result Logging
                     console.log("QueryBody: codeAddress");
