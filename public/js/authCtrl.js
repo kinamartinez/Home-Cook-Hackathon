@@ -60,7 +60,8 @@ app.controller('authCtrl', function($scope, authFactory, $state, $rootScope, geo
     };
     $scope.login = function() {
         authFactory.login($scope.user)
-            .then(function() {
+            .then(function(user) {
+                $rootScope.currentUser = user;
                 $state.go('home');
             }, function(err) {
                 alert(err.data);

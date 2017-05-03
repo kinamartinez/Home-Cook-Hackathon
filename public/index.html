@@ -7,15 +7,13 @@
     <meta charset="utf-8">
     <title>Home Cooks</title>
     <meta name="description" content="Home Cooked Meals">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- CSS -->
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="navbarStyle.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet"
-          type="text/css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="navbarStyle.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" type="text/css">
     <!-- Holder JS -->
     <script src="../bower_components/holderjs/holder.js"></script>
     <!-- Google Maps API -->
@@ -28,63 +26,60 @@
 </head>
 
 <body ng-controller="masterController">
-<nav id="header" class="navbar navbar-fixed-top">
-    <div id="header-container" class="container navbar-container">
-        <div class="navbar-header">
-            <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar" class="navbar-toggle collapsed"><span
+    <nav id="header" class="navbar navbar-fixed-top">
+        <div id="header-container" class="container navbar-container">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span
                     class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
                     class="icon-bar"></span><span
                     class="icon-bar"></span></button>
-            <a id="brand" href="/" class="navbar-brand">The Home Cook</a>
+                <a id="brand" href="/" class="navbar-brand">The Home Cook</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="false"><a ui-sref="menu">Food Menu</a></li>
+                    <li active><a ui-sref="map.join">Join the Team</a></li>
+                    <li disabled><a ui-sref="map.find">Find Some Cooks</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="navbar-text">{{currentUser}}</li>
+                    <button ng-click="logout()" type="submit" class="btn btn-success fa fa-sign-out fa-2px">Log out</button>
+
+                </ul>
+            </div>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="false"><a ui-sref="menu">Food Menu</a></li>
-                <li active><a ui-sref="map.join">Join the Team</a></li>
-                <li disabled><a ui-sref="map.find">Find Some Cooks</a></li>
+    </nav>
 
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="navbar-text">{{currentUser.username}}</li>
-                <button ng-click="logout()" type="submit" class="btn btn-success fa fa-sign-out fa-2px">Log out</button>
+    <ui-view></ui-view>
 
-            </ul>
-        </div>
-    </div>
-</nav>
 
-<ui-view></ui-view>
 
-<div class="footer">
-    <p class="text-center"><span class="glyphicon glyphicon-check"></span>
-        <a href="https://github.com/">Github Repo</a></p>
-</div>
+    <!-- Angular Scripts -->
+    <!-- JS Source -->
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="auth0-angular/build/auth0-angular.js"></script>
+    <script src="angular-lock/dist/angular-lock.js"></script>
+    <script src="angular-jwt/dist/angular-jwt.js"></script>
 
-<!-- Angular Scripts -->
-<!-- JS Source -->
-<script src="../bower_components/angular/angular.js"></script>
-<script src="../bower_components/angular-route/angular-route.js"></script>
-<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
-<script src="auth0-angular/build/auth0-angular.js"></script>
-<script src="angular-lock/dist/angular-lock.js"></script>
-<script src="angular-jwt/dist/angular-jwt.js"></script>
 
-<script src="js/app.js"></script>
-<script src="js/addCtrl.js"></script>
-<script src="js/gservice.js"></script>
-<script src="js/queryCtrl.js"></script>
-<script src="js/authCtrl.js"></script>
-<script src="js/authFactory.js"></script>
-<script src="js/masterController.js"></script>
-<script src="js/foodController.js"></script>
-<script src="js/reviewController.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/addCtrl.js"></script>
+    <script src="js/gservice.js"></script>
+    <script src="js/queryCtrl.js"></script>
+    <script src="js/authCtrl.js"></script>
+    <script src="js/accountCtrl.js"></script>
+    <script src="js/authFactory.js"></script>
+    <script src="js/masterController.js"></script>
+    <script src="js/foodController.js"></script>
+  <script src="js/reviewController.js"></script>
 <script src="js/reviewFactory.js"></script>
-<script src="js/navbarFunc.js"></script>
-<script src="js/components/toolbar/toolbar.dir.js"></script>
-<script src="js/components/profile/profileController.js"></script>
+    <script src="js/navbarFunc.js"></script>
+
 
 </body>
 

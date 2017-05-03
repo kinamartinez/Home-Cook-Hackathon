@@ -5,6 +5,8 @@ var app = angular.module('meanMapApp', [
     'queryCtrl',
     'geolocation',
     'gservice'
+
+
     // 'auth0.lock',
     // 'angular-jwt',
     // 'angular-storage',
@@ -25,35 +27,36 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
         $stateProvider
         // Join Team Control Panel
             .state('map.join', {
-                url: '/join',
-                controller: 'authCtrl',
-                templateUrl: 'partials/addForm.html',
+            url: '/join',
+            controller: 'authCtrl',
+            templateUrl: 'partials/addForm.html',
 
-                // Find Home Cooks Control Panel
-            })
+            // Find Home Cooks Control Panel
+        })
 
-            .state('map.list', {
+        .state('map.list', {
                 url: '/list',
                 templateUrl: 'partials/list.html',
                 controller: 'foodController'
-                // All else forward to the Join Home Cook Team Control Panel
+                    // All else forward to the Join Home Cook Team Control Panel
             })
             .state('profile', {
                 url: '/profile',
                 controller: 'foodController',
                 templateUrl: 'partials/profile.html',
-
                 // All else forward to the Join Home Cook Team Control Panel
             })
             .state('profile.reviewForm', {
                 url: '/reviewForm',
                 templateUrl: 'partials/reviewForm.html',
+
                 controller: 'reviewController',
                 resolve: {
                     reviews: function ($http) {
                         return $http.get('/data');
                     }
                 }
+
 
             })
             .state('orderForm', {
@@ -68,7 +71,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 templateUrl: 'js/components/home/home.tpl.html',
             })
 
-            .state('map', {
+        .state('map', {
                 url: '/map',
                 templateUrl: 'partials/map.html',
                 controller: 'queryCtrl'
@@ -88,6 +91,21 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/login',
                 templateUrl: '/partials/login.html',
                 controller: 'authCtrl'
+            })
+            .state('account', {
+                url: '/myAccount',
+                templateUrl: '/partials/account.html',
+                controller: 'accountCtrl',
+                resolve: {
+                    myData: function($http, $state) {
+                        console.log('yup')
+                        return $http.get('/account/updateProfile')
+                            .catch(function(err) {
+                                console.log('yes i am')
+                                $state.go('home')
+                            })
+                    }
+                }
             });
         // lockProvider.init({
         //     clientID: '55GqM7lzjXdbdFhkBlb7BSUQY2IvRUVk',

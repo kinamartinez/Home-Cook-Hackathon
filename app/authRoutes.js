@@ -67,11 +67,10 @@ router.get('/logout', function(req, res) {
 
 router.get('/currentuser', function(req, res) {
     if (req.user) {
-        res.send(req.user.username)
+        return res.send(req.user.username)
     } else {
-        res.send(null)
+        return res.status(401).send('Doh');
     }
-    res.status(401).send('Doh');
 });
 
 

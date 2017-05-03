@@ -1,4 +1,5 @@
-app.controller('masterController', function($scope, authFactory) {
-    authFactory.getCurrentUser();
-    $scope.currentUser = authFactory.currentUser
+app.controller('masterController', function($rootScope, authFactory) {
+    authFactory.getCurrentUser().then(function(data) {
+        $rootScope.currentUser = data
+    })
 });
