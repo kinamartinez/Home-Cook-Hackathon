@@ -20,7 +20,7 @@ var app = angular.module('meanMapApp', [
 // Configures Angular routing -- showing the relevant view and controller when needed.
 //'authProvider','$httpProvider', 'jwtInterceptorProvider',
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide',
-    function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    function($stateProvider, $urlRouterProvider, $locationProvider) {
 
         $locationProvider.html5Mode(true);
 
@@ -52,7 +52,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
 
                 controller: 'reviewController',
                 resolve: {
-                    reviews: function ($http) {
+                    reviews: function($http) {
                         return $http.get('/data');
                     }
                 }
@@ -80,7 +80,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/find',
                 templateUrl: 'partials/queryForm.html',
                 controller: 'authCtrl'
-                // All else forward to the Join Home Cook Team Control Panel
+                    // All else forward to the Join Home Cook Team Control Panel
             })
             .state('register', {
                 url: '/register',
