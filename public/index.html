@@ -38,12 +38,12 @@
             <div id="navbar" class="collapse navbar-collapse">
 
                 <ul class="nav navbar-nav navbar-right" ng-show='currentUser'>
-                    <a ui-sref="account">
-                        <li class="navbar-text">{{currentUser}}</li>
-                    </a>
-                    <a ui-sref="logout">
-                        <li class="navbar-text">Logout</li>
-                    </a>
+
+                    <li class="navbar-text"><a ui-sref="account">{{currentUser}} </a></li>
+
+
+                    <li class="navbar-text"><a target="_self" href="/users/logout">Logout</a></li>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-hide='currentUser'>
                     <li><a ui-sref="login">Login</a></li>
@@ -55,6 +55,8 @@
             </div>
         </div>
     </nav>
+
+
 
     <ui-view></ui-view>
 

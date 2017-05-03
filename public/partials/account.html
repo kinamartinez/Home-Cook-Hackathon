@@ -57,6 +57,12 @@
             </div>
         </div>
     </form>
+    <div class="page-header" ng-show="user.cook">
+        <a ui-sref="account.addFood">
+            <h3 class="text-center">Add food</h3>
+        </a>
+        <ui-view></ui-view>
+    </div>
     <div class="page-header">
         <h3 class="text-center">Change Password</h3>
     </div>
@@ -80,8 +86,7 @@
             </div>
         </div>
     </form>
-    <a ui-sref="account.addFood"> ADD FOOD</a>
-    <ui-view></ui-view>
+
     <div class="page-header">
         <h3 class="text-center">Delete Account</h3>
     </div>
