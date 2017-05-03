@@ -11,6 +11,7 @@ router.post('/register', function(req, res, next) {
         email: req.body.email,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
+        cook: false,
         htmlverified: req.body.htmlverified,
         fullname: req.body.fullname
     }), req.body.password, function(err, user) {
@@ -34,6 +35,7 @@ router.post('/registerCook', function(req, res, next) {
         cook: true,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
+        location: [req.body.longitude, req.body.latitude],
         htmlverified: req.body.htmlverified,
         fullname: req.body.fullname
     }), req.body.password, function(err, user) {
@@ -49,6 +51,8 @@ router.post('/registerCook', function(req, res, next) {
         });
     });
 });
+
+// ******** UNTIL HERE WORK IN PROGRESS **********//
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
     // If this function gets called, authentication was successful.
@@ -68,6 +72,58 @@ router.get('/currentuser', function(req, res) {
         res.send(null)
     }
     res.status(401).send('Doh');
+});
+
+
+
+router.post('/query/', function(req, res) {
+
+    // Grab all of the query parameters from the body.
+    var lat = req.body.latitude;
+    var long = req.body.longitude;
+    var distance = req.body.distance;
+    var favLang = req.body.favlang;
+
+
+    // Opens a generic Mongoose Query. Depending on the post body we will...
+    var query = User.find({});
+
+    // ...include filter by Max Distance (converting Kms to meters)
+    if (distance) {
+
+        // Using MongoDB's geospatial querying features. (Note how coordinates are set [long, lat]
+        query = query.where('location').near({
+            center: { type: 'Point', coordinates: [long, lat] },
+
+            // Converting Kms to meters. Specifying spherical geometry (for globe)
+            maxDistance: distance * 1000,
+            spherical: true
+        });
+    }
+
+    // ...include filter by Gender (all options)
+    if (male || female || other) {
+        query.or([{ 'gender': male }, { 'gender': female }, { 'gender': other }]);
+    }
+
+    // ...include filter by Type of Food
+    if (favLang) {
+        query = query.where('favlang').equals(favLang);
+    }
+
+    // ...include filter for Verified Locations
+    if (reqVerified) {
+        query = query.where('htmlverified').equals("Yep (Thanks for giving us real data!)");
+    }
+
+    // Execute Query and Return the Query Results
+    query.exec(function(err, users) {
+        if (err)
+            res.send(err);
+
+        // If no errors, respond with a JSON of all users that meet the criteria
+        res.json(users);
+    });
 });
 
 module.exports = router;
