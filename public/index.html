@@ -34,25 +34,21 @@
                     class="icon-bar"></span><span
                     class="icon-bar"></span></button>
                 <a id="brand" href="/" class="navbar-brand">The Home Cook</a>
+                <li class="navbar-text"><a ui-sref="map.find" ng-show='currentUser'>Whats Cooking</a></li>
             </div>
-            <div id="navbar" class="collapse navbar-collapse">
 
-                <ul class="nav navbar-nav navbar-right" ng-show='currentUser'>
+            <ul class="nav navbar-nav navbar-right" ng-show='currentUser'>
+                <li class="navbar-text"><a ui-sref="account">{{currentUser}} </a></li>
+                <li class="navbar-text"><a target="_self" href="/users/logout">Logout</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-hide='currentUser'>
+                <li><a ui-sref="login">Login</a></li>
+                <li><a ui-sref="map.join">Join the Cooking Team</a></li>
+                <li><a ui-sref="register">Create a Customer Account</a></li>
 
-                    <li class="navbar-text"><a ui-sref="account">{{currentUser}} </a></li>
+            </ul>
 
-
-                    <li class="navbar-text"><a target="_self" href="/users/logout">Logout</a></li>
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right" ng-hide='currentUser'>
-                    <li><a ui-sref="login">Login</a></li>
-                    <li><a ui-sref="map.join">Join the Cooking Team</a></li>
-                    <li><a ui-sref="register">Create a Customer Account</a></li>
-
-                </ul>
-
-            </div>
+        </div>
         </div>
     </nav>
 
