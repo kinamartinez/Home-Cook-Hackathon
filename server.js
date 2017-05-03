@@ -44,6 +44,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+
 var ensureAuthenticated = function(req, res, next) {
     if (req.isAuthenticated()) {
         return next();

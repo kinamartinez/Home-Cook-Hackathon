@@ -8,6 +8,7 @@ var passport = require('passport');
 router.get('/updateProfile', (req, res, next) => {
     return res.send(req.user);
 });
+
 router.post('/updateProfile', (req, res, next) => {
 
 
@@ -39,6 +40,47 @@ router.post('/updateProfile', (req, res, next) => {
             //req.flash('success', { msg: 'Profile information has been updated.' });
             res.redirect('/myAccount');
         });
+    });
+});
+
+// Add Product
+
+router.post('/addfood', (req, res, next) => {
+
+var Food  = {
+    dish: req.body.dish,
+    description: req.body.description,
+    price: req.body.price,
+    type:  req.body.type,
+    img: req.body.img,
+    options: req.body.options,
+    availability: {text: req.body.availability}
+};
+
+    //const errors = req.validationErrors();
+
+
+    User.findById(req.user._id, (err, user) => {
+        console.log(req.user.id)
+        if (err) { return next(err); }
+        if (req.user.cook) {
+        user.foods.push(Food)
+
+        user.save((err) => {
+            if (err) {
+                if (err.code === 11000) {
+                    // req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
+                    return res.redirect('/home');
+                }
+                return next(err);
+            }
+            //req.flash('success', { msg: 'Profile information has been updated.' });
+            res.redirect('/home');
+        });
+    } 
+    else {
+        console.log("not a cook");
+    }
     });
 });
 module.exports = router;

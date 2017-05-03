@@ -70,6 +70,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/home',
                 templateUrl: 'js/components/home/home.tpl.html',
             })
+            .state('account.addFood', {
+                url: '/addFood',
+                templateUrl: 'partials/addFood.html',
+
+                // All else forward to the Join Home Cook Team Control Panel
+            })
 
         .state('map', {
                 url: '/map',
