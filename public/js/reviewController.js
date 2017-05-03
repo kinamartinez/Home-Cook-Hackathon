@@ -4,9 +4,9 @@
 "use strict";
 app.controller('reviewController', ["$scope", "reviewFactory", "reviews", "$http", 'authFactory',function ($scope, reviewFactory, reviews, $http, authFactory) {
 
-
-    $scope.reviews = reviews.data;
-
+    $scope.reviews = [];
+    $scope.reviews.push(reviews.data);
+    console.log
 
     $scope.addReview = function () {
         let newReview = {

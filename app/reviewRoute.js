@@ -46,7 +46,7 @@ router.get('/', function (req, res, next) {
 
 
 router.post('/', function (req, res, next) {
-    Review.create(Object.assign({author: req.User.username}, req.body), function (err, review) {
+    Review.create(Object.assign({author: req.user.username}, req.body), function (err, review) {
         if (err) {
             console.error(err);
             return next(err);

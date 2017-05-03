@@ -12,7 +12,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 var userRoutes = require('./app/authRoutes');
-var accountRoutes = require('./app/authRoutes');
+var accountRoutes = require('./app/accountRoutes');
 var reviewRoute = require('./app/reviewRoute');
 var User = require("./app/model");
 
