@@ -33,12 +33,12 @@ router.post('/updateProfile', (req, res, next) => {
             if (err) {
                 if (err.code === 11000) {
                     // req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
-                    return res.redirect('/account');
+                    return res.redirect('/myAccount');
                 }
                 return next(err);
             }
             //req.flash('success', { msg: 'Profile information has been updated.' });
-            res.redirect('/account');
+            res.redirect('/myAccount');
         });
     });
 });
