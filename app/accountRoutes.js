@@ -5,23 +5,18 @@ var passport = require('passport');
 
 // ******** WORK IN PROGRESS **********//
 
-router.get('/updateProfile', passport.authenticate('local'), (req, res, next) => {
-    res.send('algo paso');
-    next();
+router.get('/updateProfile', (req, res, next) => {
+    return res.send(req.user);
 });
-router.post('/updateProfile', passport.authenticate('local'), (req, res, next) => {
+router.post('/updateProfile', (req, res, next) => {
 
-    req.assert('email', 'Please enter a valid email address.').isEmail();
-    req.sanitize('email').normalizeEmail({ remove_dots: false });
 
-    const errors = req.validationErrors();
+    //const errors = req.validationErrors();
 
-    if (errors) {
-        req.flash('errors', errors);
-        //return res.redirect('/account');
-    }
 
-    User.findById(req.user.id, (err, user) => {
+
+    User.findById(req.user._id, (err, user) => {
+        console.log(req.user.id)
         if (err) { return next(err); }
 
         user.email = req.body.email || '';
@@ -36,12 +31,12 @@ router.post('/updateProfile', passport.authenticate('local'), (req, res, next) =
         user.save((err) => {
             if (err) {
                 if (err.code === 11000) {
-                    req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
+                    // req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
                     return res.redirect('/account');
                 }
                 return next(err);
             }
-            req.flash('success', { msg: 'Profile information has been updated.' });
+            //req.flash('success', { msg: 'Profile information has been updated.' });
             res.redirect('/account');
         });
     });

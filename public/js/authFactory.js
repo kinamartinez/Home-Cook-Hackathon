@@ -29,14 +29,14 @@ app.factory('authFactory', function($http) {
     auth.login = function(user) {
         return $http.post('/users/login', user)
             .then(function(response) {
-                auth.currentUser.username = angular.copy(response.data)
-                console.log(user)
+                //auth.currentUser.username = angular.copy(response.data)
+                return response.data
             });
     };
     auth.getCurrentUser = function() {
         return $http.get('/users/currentUser')
             .then(function(response) {
-                auth.currentUser.username = angular.copy(response.data)
+                return response.data
             });
     };
     auth.logout = function(user) {
