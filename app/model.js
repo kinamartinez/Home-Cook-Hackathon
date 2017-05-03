@@ -37,7 +37,8 @@ var UserSchema = new Schema({
     socialId: String,
     rating: { type: Number },
     provider: String,
-    loginCount: Number
+    loginCount: Number,
+    reviews: [{type: Schema.Types.ObjectId, ref:'review'}]//population from the reviews schema
 });
 
 // Sets the created_at parameter equal to the current time

@@ -1,14 +1,16 @@
-const foodController = angular.module('foodController', []);
-foodController.controller('foodController', function ($scope, gservice) {
+
+app.controller('foodController', function ($scope, gservice) {
 
     $scope.hardCodeUsers = gservice.hardCodeUsers;
 
     $scope.hardCodeUsers = [
+
+
         {
-            name: "Nan Chankul",
+            fullname: "Nan Chankul",
             dish: "Green Thai curry",
-            dietaryOptions: "Chicken, Gluten free",
-            Price: "30",
+            options: "Chicken, Gluten free",
+            price: "30",
             img: "https://static1.squarespace.com/static/50106d5684aed4702b7242ed/t/530a60e0e4b0dbc78d16cbdf/1432352707452/ThaiGreenCurry.jpg",
             cookimg: "https://c1.staticflickr.com/9/8151/7459692904_4d24118b94_b.jpg",
             type: "Thai",
@@ -18,10 +20,10 @@ foodController.controller('foodController', function ($scope, gservice) {
         },
 
         {
-            name: "Kaito Levi",
+            fullname: "Kaito Levi",
             dish: "Sushi",
-            dietaryOptions: "Fish, Gluten free",
-            Price: "30",
+            options: "Fish, Gluten free",
+            price: "30",
             img: "https://i.ytimg.com/vi/jPLJbSp6vKY/maxresdefault.jpg",
             cookimg: "https://c2.staticflickr.com/4/3947/33753392476_6389c4d5ab_b.jpg",
             type: "Japanese",
@@ -31,10 +33,10 @@ foodController.controller('foodController', function ($scope, gservice) {
 
         },
         {
-            name: "Juanita Lopez",
+            fullname: "Juanita Lopez",
             dish: "Tacos",
-            dietaryOptions: "Meat",
-            Price: "30",
+            options: "Meat",
+            price: "30",
             img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTEpeIA0L2v-G8wffXVvEi60QbCWWF5J65vfTaRCc44y53dZtWVow",
             cookimg: "https://c2.staticflickr.com/8/7387/14186686135_2efbdf8c27_b.jpg",
             type: "Mexican",
@@ -44,10 +46,10 @@ foodController.controller('foodController', function ($scope, gservice) {
 
         },
         {
-            name: "Hannah Massala",
+            fullname: "Hannah Massala",
             dish: "Injera",
-            dietaryOptions: "Vegetarian",
-            Price: "30",
+            options: "Vegetarian",
+            price: "30",
             img: "https://img.buzzfeed.com/buzzfeed-static/static/2014-06/17/17/enhanced/webdr06/original-9638-1403041240-11.jpg?downsize=715:*&output-format=auto&output-quality=auto",
             cookimg: "https://c2.staticflickr.com/8/7578/16025616471_7a45fd421e_b.jpg",
             type: "Ethiopian",
@@ -57,10 +59,10 @@ foodController.controller('foodController', function ($scope, gservice) {
 
         },
         {
-            name: "Franco Ayzemberg",
+            fullname: "Franco Ayzemberg",
             dish: "Empanadas",
-            dietaryOptions: "Chicken and Meat",
-            Price: "30",
+            options: "Chicken and Meat",
+            price: "30",
             img: "http://www.sbs.com.au/food/sites/sbs.com.au.food/files/styles/full/public/Argentinian-Street-Food---Clasico-Argentino-p30.jpg?itok=xOHjRoc7&mtime=1394750265",
             cookimg: "http://c1.staticflickr.com/3/2826/13487674005_be142b1bb6_z.jpg",
             type: "Argentinian",

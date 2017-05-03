@@ -5,7 +5,7 @@ const expressSession = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
-const plm = require('passport-local-mongoose')
+const plm = require('passport-local-mongoose');
     //const passport = require('./app/passport');
 const port = process.env.PORT || 3000;
 const morgan = require('morgan');
@@ -13,6 +13,10 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 var userRoutes = require('./app/authRoutes');
 var accountRoutes = require('./app/accountRoutes');
+
+var reviewRoute = require('./app/reviewRoute');
+
+
 var User = require("./app/model");
 
 
@@ -39,6 +43,10 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use('/users', userRoutes);
+app.use('/account', accountRoutes);
+app.use('/review', reviewRoute);
+
 var ensureAuthenticated = function(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -46,6 +54,7 @@ var ensureAuthenticated = function(req, res, next) {
         return res.status(401).send({ message: "Unauthorized" });
     }
 };
+
 
 app.use(express.static(__dirname + '/public')); // sets the static files location to public
 app.use(express.static(__dirname + '/node_modules'));
