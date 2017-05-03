@@ -5,16 +5,16 @@ const expressJWT = require('express-jwt');
 const ensureAuthenticated = expressJWT({ secret: 'thisIsTopSecret' });
 
 // Opens App Routes
-module.exports = function (app) {
+module.exports = function(app) {
 
     // GET Routes
     // --------------------------------------------------------
     // Retrieve records for all users in the db
-    app.get('/users', function (req, res) {
+    app.get('/users', function(req, res) {
 
         // Uses Mongoose schema to run the search (empty conditions)
         const query = User.find({});
-        query.exec(function (err, users) {
+        query.exec(function(err, users) {
             if (err)
                 res.send(err);
 
@@ -27,7 +27,7 @@ module.exports = function (app) {
 
 
     // Retrieves JSON records for all users who meet a certain set of query conditions
-    app.post('/query/', function (req, res) {
+    app.post('/query/', function(req, res) {
 
         // Grab all of the query parameters from the body.
         var lat = req.body.latitude;
@@ -47,16 +47,17 @@ module.exports = function (app) {
 
             // Using MongoDB's geospatial querying features. (Note how coordinates are set [long, lat]
             query = query.where('location').near({
-                center: {type: 'Point', coordinates: [long, lat]},
+                center: { type: 'Point', coordinates: [long, lat] },
 
                 // Converting Kms to meters. Specifying spherical geometry (for globe)
-                maxDistance: distance * 1000, spherical: true
+                maxDistance: distance * 1000,
+                spherical: true
             });
         }
 
         // ...include filter by Gender (all options)
         if (male || female || other) {
-            query.or([{'gender': male}, {'gender': female}, {'gender': other}]);
+            query.or([{ 'gender': male }, { 'gender': female }, { 'gender': other }]);
         }
 
         // ...include filter by Type of Food
@@ -70,7 +71,7 @@ module.exports = function (app) {
         }
 
         // Execute Query and Return the Query Results
-        query.exec(function (err, users) {
+        query.exec(function(err, users) {
             if (err)
                 res.send(err);
 
@@ -79,4 +80,3 @@ module.exports = function (app) {
         });
     });
 };
-
