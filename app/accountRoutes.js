@@ -46,7 +46,7 @@ router.post('/addReview', (req, res, next) => {
 
     let newReview = new Review(Object.assign({author: 'someone'}, req.body.text));
 
-    let cooksid = req.body._id;
+    let cooksid = req.body.cooksid;
     //const errors = req.validationErrors();
 
     console.log('********* route ********');

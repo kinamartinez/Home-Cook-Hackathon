@@ -1,4 +1,4 @@
-<div ng-repeat="cook in cooks track by $index" class="container">
+<div class="container">
     <div class="row profile">
         <div class="col-md-3">
             <div class="profile-sidebar">
@@ -43,16 +43,16 @@
                 <!-- END MENU -->
             </div>
         </div>
-        <div class="col-md-9">
-            <div class="profile-content">
-                <div class="row-fluid">
-                    <div class="col-sm-8">
-                        <div class="panel panel-default">
+        <div class="col-md-9" ng-repeat="rev in cook.reviews track by $index">
+            <!--<div class="profile-content">-->
+                <!--<div class="row-fluid">-->
+                    <!--<div class="col-sm-8">-->
+                        <!--<div class="panel panel-default">-->
                             <div class="panel-heading">
-                                <h3 class="panel-title">Review</h3>
+                                <h3 class="panel-title" >Review</h3>
                             </div><!--/panel-heading-->
                             <div class="panel-body">
-                                {{review.text}}
+                                {{rev}}
                                 <!--<small>-->
                                 <!--<span>{{review.author}}</span></small>-->
                                 <!--/author schema -->
@@ -67,10 +67,10 @@
                                    aria-hidden="true"></i>
 
                             </div><!--/panel-footer-->
-                        </div><!--/panel-->
-                    </div><!--/col-sm-6-->
-                </div>
-            </div>
+                        <!--</div>&lt;!&ndash;/panel&ndash;&gt;-->
+                    <!--</div>&lt;!&ndash;/col-sm-6&ndash;&gt;-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
 </div>
