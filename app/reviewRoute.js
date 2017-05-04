@@ -62,7 +62,7 @@ router.post('/:userid/review', function (req, res, next) {
             return next(err);
         }
         else {
-            req.user.reviews.push(reviewWithId);
+        cook.reviews.push(reviewWithId);
             req.user.save(function (err) {
                 if (err) {
                     return next(err);

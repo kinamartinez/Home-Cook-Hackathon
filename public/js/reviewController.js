@@ -6,20 +6,18 @@ app.controller('reviewController', ["$scope", "reviewFactory", "relevantCook", "
 
     // $scope.reviews = [];
     // $scope.reviews.push(reviews.data);
-    $scope.users = relevantCook;
+    $scope.cooks = relevantCook;
 
-    $scope.addReview = function () {
+    $scope.addReview = function (review) {
         let newReview = {
-            text: $scope.text,
+            text: review.text,
             //author: $scope.author,
-            upvotes: $scope.upvotes,
-            user: $scope.users._id
-
+            cooksid: $scope.cooks._id,
         };
 
-        reviewFactory.addReview(newReview, $scope.users._id).then(function (review) {
-            console.log(review);
-            $scope.users.reviews.push(review);
+        reviewFactory.addReview(review)
+            .then(function (review) {
+                $scope.cooks.reviews.push(review);
         }, function (err) {
             console.error(err);
         });
