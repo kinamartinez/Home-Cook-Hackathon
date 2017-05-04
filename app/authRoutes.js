@@ -67,11 +67,13 @@ router.get('/logout', function(req, res) {
 
 router.get('/currentuser', function(req, res) {
     if (req.user) {
-        res.send(req.user.username)
+        return res.send(req.user.username)
     } else {
-        res.send(null)
+        return res.status(401).send('Doh');
     }
 });
+
+
 
 router.post('/query/', function(req, res) {
 
@@ -122,4 +124,5 @@ router.post('/query/', function(req, res) {
         res.json(users);
     });
 });
+
 module.exports = router;

@@ -2,6 +2,8 @@
 const addCtrl = angular.module('addCtrl', ['geolocation']);
 addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, gservice){
 
+
+    
     // Initializes Variables
     // ----------------------------------------------------------------------------
     $scope.formData = {};
@@ -10,8 +12,8 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
     let long = 0;
 
    // Set initial coordinates to the center of the Israel
-    $scope.formData.latitude = 32.04;
-    $scope.formData.longitude = 34.46;
+    $scope.formData.latitude = 32.074466;
+    $scope.formData.longitude = 34.791598;
 
     // Get User's actual coordinates based on HTML5 at window load
     geolocation.getLocation().then(function(data){

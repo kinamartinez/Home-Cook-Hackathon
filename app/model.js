@@ -37,7 +37,10 @@ var UserSchema = new Schema({
     socialId: String,
     rating: { type: Number },
     provider: String,
-    loginCount: Number
+    loginCount: Number,
+    cookimg: String,
+    descrip:String,
+    reviews: [{type: Schema.Types.ObjectId, ref:'review'}]//population from the reviews schema
 });
 
 // Sets the created_at parameter equal to the current time
@@ -53,5 +56,5 @@ UserSchema.pre('save', function(next) {
 // Indexes this schema in 2dsphere format (critical for running proximity searches)
 UserSchema.index({ location: '2dsphere' });
 UserSchema.plugin(plm);
-// Exports the UserSchema for use elsewhere. Sets the MongoDB collection to be used as: "scotch-users"
+// Exports the UserSchema for use elsewhere. Sets the MongoDB collection to be used as: "user"
 module.exports = mongoose.model('user', UserSchema);

@@ -1,3 +1,5 @@
+"use strict";
+
 app.controller('authCtrl', function($scope, authFactory, $state, $rootScope, geolocation, gservice) {
 
     $scope.user = {};
@@ -6,8 +8,8 @@ app.controller('authCtrl', function($scope, authFactory, $state, $rootScope, geo
     let long = 0;
 
     // Set initial coordinates to the center of the Israel
-    $scope.user.latitude = 32.04;
-    $scope.user.longitude = 34.46;
+    $scope.user.latitude = 32.074466;
+    $scope.user.longitude = 34.791598;
 
     // Get User's actual coordinates based on HTML5 at window load
     geolocation.getLocation().then(function(data) {
@@ -16,8 +18,8 @@ app.controller('authCtrl', function($scope, authFactory, $state, $rootScope, geo
         coords = { lat: data.coords.latitude, long: data.coords.longitude };
 
         // Display coordinates in location textboxes rounded to three decimal points
-        $scope.user.latitude = parseFloat(coords.long).toFixed(3);
-        $scope.user.longitude = parseFloat(coords.lat).toFixed(3);
+        $scope.user.latitude = parseFloat(coords.lat).toFixed(3);
+        $scope.user.longitude = parseFloat(coords.long).toFixed(3);
 
         // Display message confirming that the coordinates verified.
         $scope.user.htmlverified = "Yep (Thanks for giving us real data!)";
@@ -58,7 +60,8 @@ app.controller('authCtrl', function($scope, authFactory, $state, $rootScope, geo
     };
     $scope.login = function() {
         authFactory.login($scope.user)
-            .then(function() {
+            .then(function(user) {
+                $rootScope.currentUser = user;
                 $state.go('home');
             }, function(err) {
                 alert(err.data);

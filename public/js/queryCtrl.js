@@ -47,7 +47,7 @@ angular.module('queryCtrl', ['geolocation', 'gservice'])
             $http.post('/query/', queryBody)
 
             // Store the filtered results in queryResults
-            .success(function(queryResults) {
+                .success(function(queryResults) {
 
                     // Query Body and Result Logging
                     console.log("QueryBody:");
@@ -74,7 +74,7 @@ angular.module('queryCtrl', ['geolocation', 'gservice'])
             $http.post('/query', queryBody)
 
             // Store the filtered results in queryResults
-            .success(function(queryResults) {
+                .success(function(queryResults) {
 
                     // Query Body and Result Logging
                     console.log("QueryBody: codeAddress");

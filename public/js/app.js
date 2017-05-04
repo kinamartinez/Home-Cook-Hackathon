@@ -4,8 +4,9 @@ var app = angular.module('meanMapApp', [
     'addCtrl',
     'queryCtrl',
     'geolocation',
-    'gservice',
-    'foodController'
+    'gservice'
+
+
     // 'auth0.lock',
     // 'angular-jwt',
     // 'angular-storage',
@@ -19,7 +20,7 @@ var app = angular.module('meanMapApp', [
 // Configures Angular routing -- showing the relevant view and controller when needed.
 //'authProvider','$httpProvider', 'jwtInterceptorProvider',
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide',
-    function($stateProvider, $urlRouterProvider, $locationProvider) {
+    function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
         $locationProvider.html5Mode(true);
 
@@ -32,13 +33,39 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
 
                 // Find Home Cooks Control Panel
             })
-            .state('list', {
-                url: '/list',
-                controller: 'foodController',
-                templateUrl: 'partials/list.html',
 
+            .state('map.list', {
+                url: '/list',
+                templateUrl: 'partials/list.html',
+                controller: 'foodController',
+                resolve: {
+                    users: function ($http) {
+                        return $http.get('/users')
+                            .catch(function (err) {
+                                console.log(err)
+                            }); // post es la ruta que le dimos en el server.js
+                    }
+                }
                 // All else forward to the Join Home Cook Team Control Panel
             })
+            .state('profile', {
+                url: '/profile/:id',
+                templateUrl: 'partials/profile.html',
+                controller: 'reviewController',
+                resolve: {
+                    relevantCook: ["authFactory", "$stateParams", "$http", function (authFactory, $stateParams, $http) {
+                        let userId = $stateParams.id;
+                        console.log("getting review from: ", "/review/" + userId);
+                        return $http.get("/review/" + userId).then(function (theWholeUserObj) {
+                            console.log("the next obj comes from app.js - Profile State");
+                            console.log(theWholeUserObj.data);
+                            return theWholeUserObj.data;
+                        })
+                    }]
+                }
+            })
+
+
             .state('orderForm', {
                 url: '/orderForm',
                 controller: 'foodController',
@@ -50,11 +77,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/home',
                 templateUrl: 'js/components/home/home.tpl.html',
             })
-            .state('profile', {
-                url: '/profile',
-                templateUrl: 'js/components/profile/profile.tpl.html',
-                controller: 'profileController as user'
-            })
+
             .state('map', {
                 url: '/map',
                 templateUrl: 'partials/map.html',
@@ -64,7 +87,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/find',
                 templateUrl: 'partials/queryForm.html',
                 controller: 'authCtrl'
-                    // All else forward to the Join Home Cook Team Control Panel
+                // All else forward to the Join Home Cook Team Control Panel
             })
             .state('register', {
                 url: '/register',
@@ -76,13 +99,28 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 templateUrl: '/partials/login.html',
                 controller: 'authCtrl'
             })
-            // lockProvider.init({
-            //     clientID: '55GqM7lzjXdbdFhkBlb7BSUQY2IvRUVk',
-            //     domain: 'kinamartinez.eu.auth0.com',
-            //     options: {
-            //         _idTokenVerification: false
-            //     }
-            // });
+            .state('account', {
+                url: '/myAccount',
+                templateUrl: '/partials/account.html',
+                controller: 'accountCtrl',
+                resolve: {
+                    myData: function ($http, $state) {
+                        console.log('yup');
+                        return $http.get('/account/updateProfile')
+                            .catch(function (err) {
+                                console.log('yes i am');
+                                $state.go('home')
+                            })
+                    }
+                }
+            });
+        // lockProvider.init({
+        //     clientID: '55GqM7lzjXdbdFhkBlb7BSUQY2IvRUVk',
+        //     domain: 'kinamartinez.eu.auth0.com',
+        //     options: {
+        //         _idTokenVerification: false
+        //     }
+        // });
 
         $urlRouterProvider.otherwise('/home');
     }

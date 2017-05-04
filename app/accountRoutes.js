@@ -1,27 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var User = require("../app/model");
+var Review = require("../app/reviewModel");
 var passport = require('passport');
 
-// ******** WORK IN PROGRESS **********//
+// ******** WORK IN PROGRESS **********
 
-router.get('/updateProfile', passport.authenticate('local'), (req, res, next) => {
-    res.send('algo paso');
-    next();
+router.get('/updateProfile', (req, res, next) => {
+    return res.send(req.user);
 });
-router.post('/updateProfile', passport.authenticate('local'), (req, res, next) => {
+router.post('/updateProfile', (req, res, next) => {
 
-    req.assert('email', 'Please enter a valid email address.').isEmail();
-    req.sanitize('email').normalizeEmail({ remove_dots: false });
 
-    const errors = req.validationErrors();
+    //const errors = req.validationErrors();
 
-    if (errors) {
-        req.flash('errors', errors);
-        //return res.redirect('/account');
-    }
 
-    User.findById(req.user.id, (err, user) => {
+
+    User.findById(req.user._id, (err, user) => {
+        console.log(req.user.id)
         if (err) { return next(err); }
 
         user.email = req.body.email || '';
@@ -36,13 +32,44 @@ router.post('/updateProfile', passport.authenticate('local'), (req, res, next) =
         user.save((err) => {
             if (err) {
                 if (err.code === 11000) {
-                    req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
+                    // req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
                     return res.redirect('/account');
                 }
                 return next(err);
             }
-            req.flash('success', { msg: 'Profile information has been updated.' });
+            //req.flash('success', { msg: 'Profile information has been updated.' });
             res.redirect('/account');
+        });
+    });
+});
+router.post('/addReview', (req, res, next) => {
+
+    let newReview = new Review(Object.assign({author: 'someone'}, req.body.text));
+
+    let cooksid = req.body._id;
+    //const errors = req.validationErrors();
+
+    console.log('********* route ********');
+    console.log(req.body);
+    console.log('********* route 2********');
+    console.log(req.user.id);
+    User.findById(cooksid, (err, user) => {
+
+        if (err) { return next(err); }
+        console.log('********* route 3********');
+        console.log(user)
+        user.reviews.push(newReview)
+
+        user.save((err) => {
+            if (err) {
+                if (err.code === 11000) {
+                    // req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
+                    return res.redirect('/profile');
+                }
+                return next(err);
+            }
+            //req.flash('success', { msg: 'Profile information has been updated.' });
+            res.redirect('/profile');
         });
     });
 });
