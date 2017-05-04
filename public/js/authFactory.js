@@ -6,23 +6,13 @@ app.factory('authFactory', function($http) {
     auth.register = function(user) {
         return $http.post('/users/register', user)
             .then(function(response) {
-                console.log('******user******')
-                console.log(user)
-                console.log('******response******')
-                console.log(response)
-                auth.currentUser.username = angular.copy(response.data.username)
-
+                return response.data
             });;
     };
     auth.registerCook = function(user) {
         return $http.post('/users/registerCook', user)
             .then(function(response) {
-                console.log('******user******')
-                console.log(user)
-                console.log('******response******')
-                console.log(response)
-                auth.currentUser.username = angular.copy(response.data.username)
-
+                return response.data
             });;
     };
 

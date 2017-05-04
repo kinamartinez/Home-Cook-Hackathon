@@ -20,7 +20,7 @@ var app = angular.module('meanMapApp', [
 // Configures Angular routing -- showing the relevant view and controller when needed.
 //'authProvider','$httpProvider', 'jwtInterceptorProvider',
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide',
-    function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    function($stateProvider, $urlRouterProvider, $locationProvider) {
 
         $locationProvider.html5Mode(true);
 
@@ -53,6 +53,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 templateUrl: 'partials/profile.html',
                 controller: 'reviewController',
                 resolve: {
+
                     relevantCook: ["authFactory", "$stateParams", "$http", function (authFactory, $stateParams, $http) {
                         let userId = $stateParams.id;
                         console.log("getting review from: ", "/review/" + userId);
@@ -62,6 +63,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                             return theWholeUserObj.data;
                         })
                     }]
+
                 }
             })
 
@@ -77,6 +79,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/home',
                 templateUrl: 'js/components/home/home.tpl.html',
             })
+            .state('account.addFood', {
+                url: '/addFood',
+                templateUrl: 'partials/addFood.html',
+
+                // All else forward to the Join Home Cook Team Control Panel
+            })
 
             .state('map', {
                 url: '/map',
@@ -87,7 +95,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/find',
                 templateUrl: 'partials/queryForm.html',
                 controller: 'authCtrl'
-                // All else forward to the Join Home Cook Team Control Panel
+                    // All else forward to the Join Home Cook Team Control Panel
             })
             .state('register', {
                 url: '/register',

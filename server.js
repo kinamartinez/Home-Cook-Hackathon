@@ -6,7 +6,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const plm = require('passport-local-mongoose');
-    //const passport = require('./app/passport');
+//const passport = require('./app/passport');
 const port = process.env.PORT || 3000;
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -73,12 +73,14 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
+
 // Backend / API
 
 var userRoutes = require('./app/authRoutes');
 var accountRoutes = require('./app/accountRoutes');
 
 var reviewRoute = require('./app/reviewRoute');
+
 
 var ensureAuthenticated = function(req, res, next) {
     if (req.isAuthenticated()) {
@@ -92,6 +94,7 @@ app.use('/users', userRoutes);
 app.use('/account', accountRoutes);
 app.use('/review', reviewRoute);
 app.use('/account', ensureAuthenticated, accountRoutes);
+app.use('/review', reviewRoute);
 
 
 // Logging and Parsing
