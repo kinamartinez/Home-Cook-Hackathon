@@ -16,10 +16,11 @@ router.post('/updateProfile', (req, res, next) => {
     //const errors = req.validationErrors();
 
 
-
     User.findById(req.user._id, (err, user) => {
         console.log(req.user.id)
-        if (err) { return next(err); }
+        if (err) {
+            return next(err);
+        }
 
         user.email = req.body.email || '';
         user.username = req.body.username || '';
@@ -48,71 +49,72 @@ router.post('/updateProfile', (req, res, next) => {
 
 router.post('/addfood', (req, res, next) => {
 
-var Food  = {
-    dish: req.body.dish,
-    description: req.body.description,
-    price: req.body.price,
-    type:  req.body.type,
-    img: req.body.img,
-    options: req.body.options,
-    availability: {text: req.body.availability}
-};
+    var Food = {
+        dish: req.body.dish,
+        description: req.body.description,
+        price: req.body.price,
+        type: req.body.type,
+        img: req.body.img,
+        options: req.body.options,
+        availability: {text: req.body.availability}
+    };
 
     //const errors = req.validationErrors();
 
 
     User.findById(req.user._id, (err, user) => {
         console.log(req.user.id)
-        if (err) { return next(err); }
+        if (err) {
+            return next(err);
+        }
         if (req.user.cook) {
-        user.foods.push(Food)
+            user.foods.push(Food)
 
-        user.save((err) => {
-            if (err) {
-                if (err.code === 11000) {
-                    // req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
-                    return res.redirect('/home');
+            user.save((err) => {
+                if (err) {
+                    if (err.code === 11000) {
+                        // req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
+                        return res.redirect('/home');
+                    }
+                    return next(err);
                 }
-                return next(err);
-            }
-            //req.flash('success', { msg: 'Profile information has been updated.' });
-            res.redirect('/home');
-        });
-    } 
-    else {
-        console.log("not a cook");
-    }
+                //req.flash('success', { msg: 'Profile information has been updated.' });
+                res.redirect('/home');
+            });
+        }
+        else {
+            console.log("not a cook");
+        }
     });
 });
 router.post('/addReview', (req, res, next) => {
 
-    let newReview = new Review(Object.assign({author: 'someone'}, req.body.text));
+    let newReview = new Review(req.body);
 
-    let cooksid = req.body.cooksid;
+
+    const cooksid = req.body.cooksid;
     //const errors = req.validationErrors();
 
-    console.log('********* route ********');
-    console.log(req.body);
-    console.log('********* route 2********');
-    console.log(req.user.id);
-    User.findById(cooksid, (err, user) => {
+    User.findById(cooksid)
+        .then(function (user) {
+            newReview.save()
+                .then(function (review) {
+                    user.reviews.push(review);
+                    user.save().then(function (saveduser) {
 
-        if (err) { return next(err); }
-        console.log('********* route 3********');
-        console.log(user)
-        user.reviews.push(newReview)
+                        user.populate("reviews", function (err, user) {
+                            console.log(user);
+                            res.send(user.reviews)
 
-        user.save((err) => {
-            if (err) {
-                if (err.code === 11000) {
-                    // req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
-                    return res.redirect('/profile');
-                }
-                return next(err);
-            }
-            //req.flash('success', { msg: 'Profile information has been updated.' });
-            res.redirect('/profile');
-        });
-    });
+                        })
+
+
+                    })
+                })
+
+        })
+        .catch(console.log);
 });
+
+
 module.exports = router;

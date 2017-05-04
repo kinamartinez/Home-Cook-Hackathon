@@ -39,7 +39,9 @@
 
 
                 <a id="brand" href="/" class="navbar-brand">The Home Cook</a>
+            <ul class="nav navbar-nav navbar-left" ng-hide='currentUser'>
                 <li class="navbar-text"><a ui-sref="map.find" ng-show='currentUser'>Whats Cooking</a></li>
+            </ul>
             </div>
 
             <ul class="nav navbar-nav navbar-right" ng-show='currentUser'>
@@ -54,7 +56,7 @@
             </ul>
 
         </div>
-        </div>
+
     </nav>
 
 

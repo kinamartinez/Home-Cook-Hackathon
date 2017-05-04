@@ -13,26 +13,27 @@
                 <!-- Text Boxes-->
                 <div ng-repeat="user in users track by $index" class="form-group col-md-12 pic well">
 
-                    <span>
+ <span>
                     <a ui-sref="profile({id:user._id})"><h4><strong>{{user.fullname}}</strong></h4></a>
+                        <div ng-repeat="food in user.foods track by $index">
 
-                    <strong> Type Of Food:</strong> {{user.type}} - {{user.dish}}
+                    <strong> Type Of Food:</strong> {{food.dish}}<br>
+                    <i class="fa fa-cutlery" aria-hidden="true"></i> {{food.options}}
                     <br>
-                    <i class="fa fa-cutlery" aria-hidden="true"></i> {{user.options}}
+                    <i class="fa fa-money" aria-hidden="true"></i> Price {{food.price}} NIS
                     <br>
-                    <i class="fa fa-money" aria-hidden="true"></i> Price {{user.price}} NIS
-                    <br>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{user.locationHC}}
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
                     <br>
                     <a href="/#/orderForm">
                         <button class="btn btn-danger" type="button"><i class="fa fa-credit-card"
                                                                         aria-hidden="true"></i> Start Order
                         </button>
                     </a>
+
+                        <div class="col-md-6 pull-left"><img class="fotos" ng-src="{{food.img}}"
+                                                             style="width:200px; height:150px">
+                        </div> </div>
                     </span>
-                    <div class="col-md-6 pull-left"><img class="fotos" ng-src="{{user.img}}"
-                                                         style="width:200px; height:150px">
-                    </div>
                 </div>
             </form>
         </div>

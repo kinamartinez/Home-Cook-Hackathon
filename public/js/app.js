@@ -60,6 +60,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                         return $http.get("/review/" + userId).then(function (theWholeUserObj) {
                             console.log("the next obj comes from app.js - Profile State");
                             console.log(theWholeUserObj.data);
+                            console.log("this is the users reviews");
+                            console.log(theWholeUserObj.data.reviews);
                             return theWholeUserObj.data;
                         })
                     }]

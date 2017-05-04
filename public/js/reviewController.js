@@ -11,7 +11,7 @@ app.controller('reviewController', ["$scope", "reviewFactory", "relevantCook", "
     $scope.addReview = function (review) {
         let newReview = {
             text: review.text,
-            //author: $scope.author,
+            author: $scope.author,
             cooksid: $scope.cook._id,
         };
 

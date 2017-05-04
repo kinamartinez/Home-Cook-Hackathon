@@ -34,8 +34,9 @@ router.get('/:userid2', function (req, res, next) {
     const userId = req.params.userid2;
 
     console.log("Looking for user with id ", userId);
-    User.findOne ({_id: userId}).populate('review')
+    User.findOne ({_id: userId}).populate("reviews")
         .exec(function (error, user) {
+            console.log(user);
         if (error) {
             console.error("Error finding user with id ", userId, ":", error);
             return next(error);

@@ -18,7 +18,7 @@ const methodOverride = require('method-override');
 
 
 // Connect to database
-mongoose.connect("mongodb://localhost/trial3");
+mongoose.connect("mongodb://localhost/trial4");
 
 
 
@@ -92,7 +92,6 @@ var ensureAuthenticated = function(req, res, next) {
 
 app.use('/users', userRoutes);
 app.use('/account', accountRoutes);
-app.use('/review', reviewRoute);
 app.use('/account', ensureAuthenticated, accountRoutes);
 app.use('/review', reviewRoute);
 
