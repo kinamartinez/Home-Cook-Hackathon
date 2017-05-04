@@ -63,7 +63,12 @@ app.controller('authCtrl', function($scope, authFactory, $state, $rootScope, geo
         authFactory.login($scope.user)
             .then(function(user) {
                 $rootScope.currentUser = user;
-                $state.go('account');
+                console.log(user)
+                if ($rootScope.currentUser.cook) {
+                    $state.go('account');
+                } else {
+                    $state.go('map.find');
+                }
             }, function(err) {
                 alert(err.data);
             });
