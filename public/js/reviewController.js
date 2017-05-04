@@ -2,23 +2,26 @@
  * Created by karina on 02/05/17.
  */
 "use strict";
-app.controller('reviewController', ["$scope", "reviewFactory", "reviews", "$http", 'authFactory',function ($scope, reviewFactory, reviews, $http, authFactory) {
+app.controller('reviewController', ["$scope", "reviewFactory", "relevantCook", "$http", 'authFactory', function ($scope, reviewFactory, relevantCook, $http, authFactory) {
 
-    $scope.reviews = [];
-    $scope.reviews.push(reviews.data);
-    console.log
+    // $scope.reviews = [];
+    // $scope.reviews.push(reviews.data);
+    $scope.cook = relevantCook;
 
-    $scope.addReview = function () {
+    $scope.addReview = function (review) {
         let newReview = {
-            text: $scope.text,
+            text: review.text,
             //author: $scope.author,
-            upvotes: $scope.upvotes,
-
+            cooksid: $scope.cook._id,
         };
 
-        reviewFactory.addReview(newReview).then(function (review) {
-            $scope.reviews.push(review);
+        reviewFactory.addReview(newReview)
+            .then(function (review) {
+                $scope.cook.reviews.push(review);
+        }, function (err) {
+            console.error(err);
         });
+
     };
 
 

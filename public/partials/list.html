@@ -11,18 +11,18 @@
             <!-- Creates Form (novalidate disables HTML validation, Angular will control) -->
             <form name="addForm">
                 <!-- Text Boxes-->
-                <div ng-repeat="hardCodeUser in hardCodeUsers" class="form-group col-md-12 pic well">
+                <div ng-repeat="user in users track by $index" class="form-group col-md-12 pic well">
 
                     <span>
-                    <a ui-sref="profile"><h4><strong>{{hardCodeUser.fullname}}</strong></h4></a>
+                    <a ui-sref="profile({id:user._id})"><h4><strong>{{user.fullname}}</strong></h4></a>
 
-                    <strong> Type Of Food:</strong> {{hardCodeUser.type}} - {{hardCodeUser.dish}}
+                    <strong> Type Of Food:</strong> {{user.type}} - {{user.dish}}
                     <br>
-                    <i class="fa fa-cutlery" aria-hidden="true"></i> {{hardCodeUser.options}}
+                    <i class="fa fa-cutlery" aria-hidden="true"></i> {{user.options}}
                     <br>
-                    <i class="fa fa-money" aria-hidden="true"></i> Price {{hardCodeUser.price}} NIS
+                    <i class="fa fa-money" aria-hidden="true"></i> Price {{user.price}} NIS
                     <br>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{hardCodeUser.locationHC}}
+                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{user.locationHC}}
                     <br>
                     <a href="/#/orderForm">
                         <button class="btn btn-danger" type="button"><i class="fa fa-credit-card"
@@ -30,7 +30,7 @@
                         </button>
                     </a>
                     </span>
-                    <div class="col-md-6 pull-left"><img class="fotos" ng-src="{{hardCodeUser.img}}"
+                    <div class="col-md-6 pull-left"><img class="fotos" ng-src="{{user.img}}"
                                                          style="width:200px; height:150px">
                     </div>
                 </div>

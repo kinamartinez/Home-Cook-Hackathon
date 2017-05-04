@@ -19,10 +19,12 @@ module.exports = function(app) {
                 res.send(err);
 
             // If no errors are found, it responds with a JSON of all users
-            res.json(users);
-            console.log(users)
+            console.log(users);
+            return res.json(users);
         });
     });
+
+
 
 
 

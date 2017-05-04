@@ -5,31 +5,29 @@
 app.factory('reviewFactory', function ($http) {
 
     const reviewFactory = {};
-    
-    
-    reviewFactory.getReview = function () {
-        return $http.get('/review')
+
+
+    reviewFactory.getUsers = function () {
+        return $http.get('/users')
             .then(function (response) {
-                console.log("from the factory get");
-                console.log(response.data);
+                console.log("users from the factory get: ", response.data);
                 return response.data
             }, function (err) {
                 console.error(err)
             });
     };
-    
 
-    reviewFactory.addReview = function (newReview) {
-        return $http.post('/review', newReview)
+
+    reviewFactory.addReview = function (review, userId) {
+        return $http.post('/account/addReview', review)
             .then(function (response) {
-               console.log("from the factory");
-                console.log(response.data);
+                console.log("from the factory");
+                console.log(response);
                 return response.data
             }, function (err) {
                 console.error(err)
             })
     };
-
 
     // reviewFactory.upvote = function (reviewToUpvote) {
     //     return $http.put('/review/' + reviewToUpvote + '/upvote', null)
