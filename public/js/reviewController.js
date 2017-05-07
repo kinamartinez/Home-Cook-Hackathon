@@ -4,26 +4,30 @@
 "use strict";
 app.controller('reviewController', ["$scope", "reviewFactory", "relevantCook", "$http", 'authFactory', function ($scope, reviewFactory, relevantCook, $http, authFactory) {
 
-    // $scope.reviews = [];
-    // $scope.reviews.push(reviews.data);
-    $scope.cooks = relevantCook;
+
+    $scope.cook = relevantCook;
+    console.log(relevantCook);
 
     $scope.addReview = function (review) {
         let newReview = {
             text: review.text,
-            //author: $scope.author,
-            cooksid: $scope.cooks._id,
+            author: $scope.currentUser,
+            cooksid: $scope.cook._id,
         };
 
-        reviewFactory.addReview(review)
+        reviewFactory.addReview(newReview)
             .then(function (review) {
-                $scope.cooks.reviews.push(review);
-        }, function (err) {
-            console.error(err);
-        });
+                $scope.cook.reviews.push(review);
+            }, function (err) {
+                console.error(err);
+            });
 
     };
 
+    $scope.deleteReview = function(rev)    {
+        $scope.cook.reviews.splice($scope.cook, 1);
+
+    };
 
     // $scope.upvote = function (review) {
     //     reviewFactory.upvote(review).then(function () {
@@ -43,13 +47,6 @@ app.controller('reviewController', ["$scope", "reviewFactory", "relevantCook", "
     //     });
     // };
 
-    $scope.deleteReview = function (reviewToRemove) {
-        return $http.delete('/review/' + reviewToRemove._id)
-            .then(function (response) {
-                $http.get('/review').then(function (reviews) {
-                    $scope.reviews = reviews.data;///now we are reshowing the data after the db removed it
-                });
-            })
 
-    }
+
 }]);

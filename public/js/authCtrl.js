@@ -42,18 +42,19 @@ app.controller('authCtrl', function($scope, authFactory, $state, $rootScope, geo
 
     $scope.register = function() {
         authFactory.register($scope.user)
-            .then(function() {
-                console.log($scope.user)
-                $state.go('home');
+            .then(function(user) {
+                $rootScope.currentUser = user.username;
+
+                $state.go('map.find');
             }, function(err) {
                 alert(err.data.message);
             });
     };
     $scope.registerCook = function() {
         authFactory.registerCook($scope.user)
-            .then(function() {
-                console.log($scope.user)
-                $state.go('home');
+            .then(function(user) {
+                $rootScope.currentUser = user.username;
+                $state.go('account');
             }, function(err) {
                 alert(err.data.message);
             });
@@ -62,7 +63,11 @@ app.controller('authCtrl', function($scope, authFactory, $state, $rootScope, geo
         authFactory.login($scope.user)
             .then(function(user) {
                 $rootScope.currentUser = user;
-                $state.go('home');
+                if( $rootScope.currentUser.cook) {
+                    $state.go('account');
+                }else {
+                    $state.go('map.find');
+                }
             }, function(err) {
                 alert(err.data);
             });

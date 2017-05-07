@@ -6,18 +6,6 @@ app.factory('reviewFactory', function ($http) {
 
     const reviewFactory = {};
 
-
-    reviewFactory.getUsers = function () {
-        return $http.get('/users')
-            .then(function (response) {
-                console.log("users from the factory get: ", response.data);
-                return response.data
-            }, function (err) {
-                console.error(err)
-            });
-    };
-
-
     reviewFactory.addReview = function (review, userId) {
         return $http.post('/account/addReview', review)
             .then(function (response) {
@@ -48,6 +36,8 @@ app.factory('reviewFactory', function ($http) {
     //             console.error(err.data.message)
     //         });
     // };
+
+
     return reviewFactory;
 
 })

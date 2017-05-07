@@ -6,7 +6,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const plm = require('passport-local-mongoose');
-    //const passport = require('./app/passport');
+//const passport = require('./app/passport');
 const port = process.env.PORT || 3000;
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -18,7 +18,7 @@ const methodOverride = require('method-override');
 
 
 // Connect to database
-mongoose.connect("mongodb://localhost/trial3");
+mongoose.connect("mongodb://localhost/trial5");
 
 
 
@@ -75,10 +75,11 @@ passport.deserializeUser(User.deserializeUser());
 
 // Backend / API
 
-var userRoutes = require('./app/authRoutes');
-var accountRoutes = require('./app/accountRoutes');
+var userRoutesRouter = require('./app/authRoutes');
+var accountRoutesRouter = require('./app/accountRoutes');
 
-var reviewRoute = require('./app/reviewRoute');
+var reviewRouteRouter = require('./app/reviewRoute');
+
 
 var ensureAuthenticated = function(req, res, next) {
     if (req.isAuthenticated()) {
@@ -88,10 +89,13 @@ var ensureAuthenticated = function(req, res, next) {
     }
 };
 
-app.use('/users', userRoutes);
-app.use('/account', accountRoutes);
-app.use('/review', reviewRoute);
-app.use('/account', ensureAuthenticated, accountRoutes);
+app.use('/users', userRoutesRouter);
+app.use('/account', ensureAuthenticated, accountRoutesRouter);
+app.use('/review', reviewRouteRouter);
+
+
+
+
 
 
 // Logging and Parsing
