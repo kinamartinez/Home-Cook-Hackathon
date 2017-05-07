@@ -24,18 +24,11 @@ app.controller('reviewController', ["$scope", "reviewFactory", "relevantCook", "
 
     };
 
-    $scope.deleteReview = function (review) {
-        console.log("soy el review to Remove" + " "+  review);
-        return $http.delete('/deleteReview/' + review._id + '/deleteReviewId', review)
-            .then(function (response) {
-                console.log("from the controller delete");
-                console.log(response);
-                $http.get('/account/deleteReview').then(function (reviews) {
-                    $scope.cook.reviews = reviews.data;///now we are reshowing the data after the db removed it
-                });
-            })
+    $scope.deleteReview = function(rev)    {
+        $scope.cook.reviews.splice($scope.cook, 1);
 
     };
+
     // $scope.upvote = function (review) {
     //     reviewFactory.upvote(review).then(function () {
     //         reviewFactory.getReview().then(function (reviews) {

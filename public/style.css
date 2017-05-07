@@ -125,15 +125,16 @@
 
 .fotos {
     border: 1px;
-    border-radius: 10px;
     display: block;
     margin: auto;
-   padding-bottom: 10px;
+    height: 200px;
+    border-radius: 10px;
+    padding-bottom: 10px;
 }
 
 .modal-open {
     overflow-y: auto;
-    overflow-x:scroll;
+    overflow-x: scroll;
     max-height: 550px;
     max-width: 550px;
 }
@@ -198,13 +199,11 @@ body {
     background: #F1F3FA;
 }
 
-
 /* Profile container */
 
 .profile {
     margin: 20px 0;
 }
-
 
 /* Profile sidebar */
 
@@ -299,7 +298,6 @@ body {
     margin-left: -2px;
 }
 
-
 /* Profile Content */
 
 .profile-content {
@@ -308,3 +306,44 @@ body {
     min-height: 460px;
 }
 
+.rightCol1 {
+
+    float: right;
+    margin-top: 10px;
+}
+
+.theBox2 {
+    border-radius: 5px;
+    width: 483px;
+    height: 244px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0px 40px 15px;
+    padding-left: 200px;
+    box-sizing: border-box;
+}
+
+.txtBox2 {
+    position: absolute;
+    height: 244px;
+    width: 190px;
+    bottom: 0;
+    left: 0;
+
+}
+
+h4 {
+    padding: 0;
+    margin: 10px 0 10px 15px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #e6540c;
+}
+
+h5 {
+    padding: 0;
+    margin: 10px 0 10px 15px;
+    font-size: 14px;
+    font-weight: 400;
+    color: black;
+}

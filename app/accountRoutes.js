@@ -18,7 +18,7 @@ router.post('/updateProfile', (req, res, next) => {
 
     User.findById(req.user._id, (err, user) => {
         // http://localhost:3000/users/currentUser
-            console.log(req.user.id);
+        console.log(req.user.id);
         if (err) {
             return next(err);
         }
@@ -26,10 +26,10 @@ router.post('/updateProfile', (req, res, next) => {
         user.email = req.body.email || '';
         user.username = req.body.username || '';
         user.fullname = req.body.fullname || '';
-        user.username = req.body.username || '';
-        // user.location = req.body.location || '';
-        // user.phoneNumber = req.body.phoneNumber || '';
-        // user.cookPic = req.body.cookPic || '';
+        user.cookPic = req.body.image || '';
+        user.descrip = req.body.descrip || '';
+        user.phoneNumber = req.body.phoneNumber || '';
+        user.place = req.body.place || '';
         // user.cook = x || '';
 
         user.save((err) => {
@@ -64,7 +64,7 @@ router.post('/addfood', (req, res, next) => {
 
 
     User.findById(req.user._id, (err, user) => {
-        console.log(req.user.id)
+        // console.log(req.user.id)
         if (err) {
             return next(err);
         }
@@ -93,8 +93,8 @@ router.post('/addReview', (req, res, next) => {
     let newReview = new Review(req.body);
 
     const cooksid = req.body.cooksid;
-    console.log("**************************");
-    console.log(req.body.cooksid);
+    // console.log("**************************");
+    // console.log(req.body.cooksid);
     //const errors = req.validationErrors();
 
     User.findById(cooksid)
@@ -105,7 +105,7 @@ router.post('/addReview', (req, res, next) => {
                     user.save().then(function (saveduser) {
 
                         user.populate("reviews", function (err, user) {
-                            console.log(user);
+                            // console.log(user);
                             res.send(user.reviews)
 
                         })
@@ -119,8 +119,8 @@ router.post('/addReview', (req, res, next) => {
 });
 
 router.delete('/:userid/reviews/:deleteReviewId', function (req, res, next) {
-    const userId = req.params.userid;
 
+    const userId = req.params.userid;
     User.findById(userId, function (err, foundUser) {
         if (err) {
             return next(err);

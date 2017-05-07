@@ -13,7 +13,7 @@
                     <div class="profile-usertitle-name">
                         {{cook.username}}
                     </div>
-                    <div ng-repeat="food in user.foods track by $index"  class="profile-usertitle-job">
+                    <div ng-repeat="food in user.foods track by $index" class="profile-usertitle-job">
                         Type of Food: {{food.dish}}
                     </div>
                 </div>
@@ -23,6 +23,7 @@
 
                 <div class="profile-userbuttons">
                     <p>{{cook.descrip}}</p>
+                    <p><strong> Phone Number: </strong>+972 ({{cook.phoneNumber}})</p>
                     <button type="button" class="btn btn-success btn-sm glyphicon glyphicon-thumbs-up"></button>
                     <button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-thumbs-down"></button>
                 </div>
@@ -49,36 +50,64 @@
                 <!-- END MENU -->
             </div>
         </div>
-        <div class="col-md-9" ng-repeat="rev in cook.reviews track by $index">
+        <div class="col-md-9">
 
-            <!--<div class="profile-content">-->
-            <!--<div class="row-fluid">-->
-            <!--<div class="col-sm-8">-->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{rev.author}}</h3>
+            <div class="profile-content">
+                <div class="row-fluid">
+                    <div class="col-sm-8">
+                        <div ng-repeat="food in cook.foods track by $index">
+                            <div class="rightCol1 ">
 
+                                <div class="theBox2">
+                                    <a href="/#/orderForm">
+                                    <img src="{{food.img}}" style="width:350px; height:250px">
+                                    <div class="txtBox2">
+                                        <h4>{{food.dish}}</h4>
+                                        <h5>"{{food.description}}!!"</h5>
+
+                                            <br> {{food.options}}
+                                            <br>  <span class="badge"><i class="fa fa-clock-o" aria-hidden="true"></i>  </span> {{food.availability}}
+                                        <br>  <span class="badge"><i class="fa fa-credit-card"
+                                                                     aria-hidden="true"></i>  </span><strong> Price: </strong> {{food.price}} NIS
+                                        <button class="btn btn-danger pull-right" type="button">
+                                        <i class="fa fa-credit-card"
+                                        aria-hidden="true"></i>
+                                        Start Order
+                                        </button>
+                                    </div>
+
+
+                                    </a>
+
+
+                                </div>
+
+
+                                <div ng-repeat="rev in cook.reviews track by $index" class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">{{rev.author}}</h3>
+
+                                    </div>
+                                    <!--/panel-heading-->
+
+
+                                    <div class="panel-body">
+
+                                        {{rev.text}}
+
+
+                                        <i ng-click="deleteReview(rev._id)"
+                                           class="fa fa-trash pull-right"
+                                           aria-hidden="true" role="button"></i>
+
+                                    </div><!--/panel-footer-->
+                                </div><!--/panel-->
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!--/panel-heading-->
-                <div class="panel-body">
-                    {{rev.text}}
-
-
-                    <!--</div>&lt;!&ndash;/panel-body&ndash;&gt;-->
-                    <!--<div class="panel-footer clearfix">-->
-
-                    <span ng-click="downvote(review._id)"> </span>
-                    <i ng-click="deleteReview(review)"
-                       class="fa fa-trash pull-right"
-                       aria-hidden="true" role="button"></i>
-
-                </div><!--/panel-footer-->
-            </div><!--/panel-->
-            <!--</div>&lt;!&ndash;/col-sm-6&ndash;&gt;-->
-            <!--</div>-->
-            <!--</div>-->
+            </div>
         </div>
     </div>
 </div>
-
 <br>
