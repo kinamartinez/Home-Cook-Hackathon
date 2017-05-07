@@ -45,7 +45,9 @@ var UserSchema = new Schema({
     cookPic: { type: String },
     descrip: { type: String },
     phoneNumber: { type: Number },
-    reviews: [{ type: Schema.Types.ObjectId, ref: 'review' }] //population from the reviews schema
+    reviews: [{ type: Schema.Types.ObjectId, ref: 'review' }], //population from the reviews schema
+    upvotes: {type: Number, default:0 },
+    downvotes: {type: Number, default:0 },
 
 });
 

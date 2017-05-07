@@ -17,25 +17,27 @@ app.factory('reviewFactory', function ($http) {
             })
     };
 
-    // reviewFactory.upvote = function (reviewToUpvote) {
-    //     return $http.put('/review/' + reviewToUpvote + '/upvote', null)
-    //         .then(function (response) {
-    //             return response.data;
-    //
-    //         }, function (err) {
-    //             console.error(err.data.message)
-    //         });
-    // };
-    //
-    // reviewFactory.downvote = function (reviewToDownvote) {
-    //     return $http.put('/review/' + reviewToDownvote + '/downvote', null)
-    //         .then(function (response) {
-    //             return response.data;
-    //
-    //         }, function (err) {
-    //             console.error(err.data.message)
-    //         });
-    // };
+    reviewFactory.upvote = function (userToUpvote) {
+        console.log("user to upvote!" + userToUpvote);
+        return $http.post('/review/'+ userToUpvote + '/upvote', null)
+            .then(function (response) {
+                console.log("aqui desde el upvote en factory!", response.data);
+                return response.data;
+
+            }, function (err) {
+                console.error(err.data.message)
+            });
+    };
+
+    reviewFactory.downvote = function (userToDownvote) {
+        return $http.put('/review/' + userToDownvote + '/downvote', null)
+            .then(function (response) {
+                return response.data;
+
+            }, function (err) {
+                console.error(err.data.message)
+            });
+    };
 
     reviewFactory.deleteReview = function (id) {
         return $http.delete('/review/' + id)

@@ -25,26 +25,23 @@ app.controller('reviewController', ["$scope", "reviewFactory", "relevantCook", "
     };
 
 
+    $scope.upvote = function (user) {
+        reviewFactory.upvote(user).then(function () {
+            $scope.cook.upvotes++;
+            console.log("i like it")
+        });
 
-    // $scope.upvote = function (review) {
-    //     reviewFactory.upvote(review).then(function () {
-    //         reviewFactory.getReview().then(function (reviews) {
-    //             $scope.reviews = reviews;
-    //             console.log("i like it")
-    //         });
-    //     });
-    // };
-    //
-    // $scope.downvote = function (review) {
-    //     reviewFactory.downvote(review).then(function () {
-    //         reviewFactory.getReview().then(function (review) {
-    //             $scope.reviews = review;
-    //             console.log("i dislike it")
-    //         });
-    //     });
-    // };
+    };
 
-    $scope.deleteReview = function(id) {
+    $scope.downvote = function (user) {
+        reviewFactory.downvote(user).then(function () {
+            $scope.cook.downvotes++;
+            console.log("i like it")
+        });
+
+    };
+
+    $scope.deleteReview = function (id) {
         var self = this;//this is the scope of a single review as defined by ng-repeat
         reviewFactory.deleteReview(id)
             .then(function (review) {

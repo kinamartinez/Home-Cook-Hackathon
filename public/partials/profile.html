@@ -20,12 +20,13 @@
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
 
-
-                <div class="profile-userbuttons">
+                             <div class="profile-userbuttons">
                     <p>{{cook.descrip}}</p>
                     <p><strong> Phone Number: </strong>+972 ({{cook.phoneNumber}})</p>
-                    <button type="button" class="btn btn-success btn-sm glyphicon glyphicon-thumbs-up"></button>
-                    <button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-thumbs-down"></button>
+                    <button type="button" ng-click="upvote(cook._id)" class="btn btn-success btn-sm glyphicon glyphicon-thumbs-up"> {{cook.upvotes}} </button>
+                    <button type="button" ng-click="downvote(cook._id)" class="btn btn-danger btn-sm glyphicon glyphicon-thumbs-down"> {{cook.downvotes}} </button>
+
+
                 </div>
 
                 <!-- END SIDEBAR BUTTONS -->
