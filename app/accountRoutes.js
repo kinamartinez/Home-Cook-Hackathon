@@ -18,7 +18,7 @@ router.post('/updateProfile', (req, res, next) => {
 
     User.findById(req.user._id, (err, user) => {
         // http://localhost:3000/users/currentUser
-            console.log(req.user.id);
+        console.log(req.user.id);
         if (err) {
             return next(err);
         }
@@ -26,10 +26,10 @@ router.post('/updateProfile', (req, res, next) => {
         user.email = req.body.email || '';
         user.username = req.body.username || '';
         user.fullname = req.body.fullname || '';
-        user.username = req.body.username || '';
-        // user.location = req.body.location || '';
-        // user.phoneNumber = req.body.phoneNumber || '';
-        // user.cookPic = req.body.cookPic || '';
+        user.cookPic = req.body.image || '';
+        user.descrip = req.body.descrip || '';
+        user.phoneNumber = req.body.phoneNumber || '';
+        user.place = req.body.place || '';
         // user.cook = x || '';
 
         user.save((err) => {
@@ -82,8 +82,7 @@ router.post('/addfood', (req, res, next) => {
                 //req.flash('success', { msg: 'Profile information has been updated.' });
                 res.redirect('/home');
             });
-        }
-        else {
+        } else {
             console.log("not a cook");
         }
     });
@@ -98,13 +97,13 @@ router.post('/addReview', (req, res, next) => {
     //const errors = req.validationErrors();
 
     User.findById(cooksid)
-        .then(function (user) {
+        .then(function(user) {
             newReview.save()
-                .then(function (review) {
+                .then(function(review) {
                     user.reviews.push(review);
-                    user.save().then(function (saveduser) {
+                    user.save().then(function(saveduser) {
 
-                        user.populate("reviews", function (err, user) {
+                        user.populate("reviews", function(err, user) {
                             console.log(user);
                             res.send(user.reviews)
 
@@ -118,10 +117,10 @@ router.post('/addReview', (req, res, next) => {
         .catch(console.log);
 });
 
-router.delete('/:userid/reviews/:deleteReviewId', function (req, res, next) {
+router.delete('/:userid/reviews/:deleteReviewId', function(req, res, next) {
     const userId = req.params.userid;
 
-    User.findById(userId, function (err, foundUser) {
+    User.findById(userId, function(err, foundUser) {
         if (err) {
             return next(err);
         } else if (!foundUser) {
@@ -129,7 +128,7 @@ router.delete('/:userid/reviews/:deleteReviewId', function (req, res, next) {
         } else {
             let reviewToRemove = foundUser.reviews.id(req.params.deleteReviewId);
             if (reviewToRemove) {
-                reviewToRemove.remove(function (err, result) {
+                reviewToRemove.remove(function(err, result) {
                     if (err) {
                         return next(err);
                     } else {
