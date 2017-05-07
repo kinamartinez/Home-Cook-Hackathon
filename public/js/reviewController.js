@@ -24,10 +24,7 @@ app.controller('reviewController', ["$scope", "reviewFactory", "relevantCook", "
 
     };
 
-    $scope.deleteReview = function(rev)    {
-        $scope.cook.reviews.splice($scope.cook, 1);
 
-    };
 
     // $scope.upvote = function (review) {
     //     reviewFactory.upvote(review).then(function () {
@@ -47,6 +44,15 @@ app.controller('reviewController', ["$scope", "reviewFactory", "relevantCook", "
     //     });
     // };
 
+    $scope.deleteReview = function(id) {
+        var self = this;//this is the scope of a single review as defined by ng-repeat
+        reviewFactory.deleteReview(id)
+            .then(function (review) {
+                $scope.cook.reviews.splice(self.$index, 1)
+            }, function (err) {
+                console.error(err);
+            });
+    }
 
 
 }]);
