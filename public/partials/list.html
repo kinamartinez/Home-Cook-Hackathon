@@ -9,31 +9,84 @@
         <!-- Panel Body -->
         <div class="panel-body modal-open">
             <!-- Creates Form (novalidate disables HTML validation, Angular will control) -->
-            <form name="addForm">
-                <!-- Text Boxes-->
-                <div ng-repeat="user in users track by $index" class="form-group col-md-12 pic well">
+            <form name="addForm ">
 
- <span>
-                    <a ui-sref="profile({id:user._id})"><h4><strong>{{user.fullname}}</strong></h4></a>
-                        <div ng-repeat="food in user.foods track by $index">
+                <div ng-repeat="user in users track by $index" class="media">
+                    <div ng-if="user.cook == true" class="form-group col-md-12 pic well modal-open">
+                        <div class="container">
 
-                    <strong> Type Of Food:</strong> {{food.dish}}<br>
-                    <i class="fa fa-cutlery" aria-hidden="true"></i> {{food.options}}
-                    <br>
-                    <i class="fa fa-money" aria-hidden="true"></i> Price {{food.price}} NIS
-                    <br>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    <br>
-                    <a href="/#/orderForm">
-                        <button class="btn btn-danger" type="button"><i class="fa fa-credit-card"
-                                                                        aria-hidden="true"></i> Start Order
-                        </button>
-                    </a>
+                            <a ui-sref="profile({id:user._id})"><h3 class="media-left">
+                                <strong>{{user.username}}</strong></h3></a>
+                            <div ng-repeat="food in user.foods track by $index" class="media-object">
 
-                        <div class="col-md-6 pull-left"><img class="fotos" ng-src="{{food.img}}"
-                                                             style="width:200px; height:150px">
-                        </div> </div>
-                    </span>
+
+                                <img class="media-object fotos" ng-src="{{food.img}}"
+                                     style="width:250px; height:150px" alt="...">
+                                <div class="media-body">
+
+                                </div>
+                                <div>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <span class="badge"><i class="fa fa-cutlery"
+                                                                   aria-hidden="true"></i>  </span>
+                                            <strong> Type Of Food:</strong> {{food.dish}}
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge"><i class="fa fa-money" aria-hidden="true"></i>  </span>
+                                            <strong> Price:</strong> {{food.price}} NIS
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge"><i class="fa fa-money" aria-hidden="true"></i>  </span>
+                                            <strong> </strong> "{{food.description}}"
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge"><i class="fa fa-envelope-o"
+                                                                   aria-hidden="true"></i>  </span>
+                                            <strong> Mail:</strong> {{user.email}}
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/#/orderForm">
+                                                <button class="btn btn-danger" type="button"><i
+                                                        class="fa fa-credit-card"
+                                                        aria-hidden="true"></i>
+                                                    Start Order
+                                                </button>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div ng-repeat="user in users track by $index"  >-->
+                    <!--&lt;!&ndash; Text Boxes&ndash;&gt;-->
+                    <!--<div  ng-if="user.cook == true" class="form-group col-md-12 pic well">-->
+
+                    <!--<span>-->
+                    <!--<a ui-sref="profile({id:user._id})"><h4><strong>{{user.fullname}}</strong></h4></a>-->
+                    <!--<div ng-repeat="food in user.foods track by $index">-->
+
+                    <!--<strong> Type Of Food:</strong> {{food.dish}}<br>-->
+                    <!--<i class="fa fa-cutlery" aria-hidden="true"></i> -->
+                    <!--<br>-->
+                    <!--<i class="fa fa-money" aria-hidden="true"></i> Price {{food.price}} NIS-->
+                    <!--<br>-->
+                    <!--<i class="fa fa-map-marker" aria-hidden="true"></i>-->
+                    <!--<br>-->
+                    <!--<a href="/#/orderForm">-->
+                    <!--<button class="btn btn-danger" type="button"><i class="fa fa-credit-card"-->
+                    <!--aria-hidden="true"></i> Start Order-->
+                    <!--</button>-->
+                    <!--</a>-->
+
+                    <!--<div class="col-md-6 pull-left"><img class="fotos" ng-src="{{food.img}}"-->
+                    <!--style="width:200px; height:150px">-->
+                    <!--</div> </div>-->
+                    <!--</span>-->
+                    <!--</div>-->
                 </div>
             </form>
         </div>

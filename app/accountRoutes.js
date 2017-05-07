@@ -16,7 +16,7 @@ router.post('/updateProfile', (req, res, next) => {
     //const errors = req.validationErrors();
 
 
-    User.findById(req.user._id, (err, user) => {
+    User.findById(req.user._id, (err, user) => {http://localhost:3000/users/currentUser
         console.log(req.user.id)
         if (err) {
             return next(err);
@@ -91,8 +91,9 @@ router.post('/addReview', (req, res, next) => {
 
     let newReview = new Review(req.body);
 
-
     const cooksid = req.body.cooksid;
+    console.log("**************************");
+    console.log(req.body.cooksid);
     //const errors = req.validationErrors();
 
     User.findById(cooksid)
@@ -116,5 +117,30 @@ router.post('/addReview', (req, res, next) => {
         .catch(console.log);
 });
 
+router.delete('/:userid/reviews/:deleteReviewId', function (req, res, next) {
+    const userId = req.params.userid;
+    
+    User.findById(userId, function (err, foundUser) {
+        if (err) {
+            return next(err);
+        } else if (!foundUser) {
+            return res.send("Error! No User found with this ID");
+        } else {
+            let reviewToRemove = foundUser.reviews.id(req.params.deleteReviewId);
+            if (reviewToRemove) {
+                reviewToRemove.remove(function (err, result) {
+                    if (err) {
+                        return next(err);
+                    } else {
+                        return res.send(result);
+                    }
+                });
+
+            }
+        }
+
+    })
+
+});
 
 module.exports = router;
