@@ -16,8 +16,9 @@ router.post('/updateProfile', (req, res, next) => {
     //const errors = req.validationErrors();
 
 
-    User.findById(req.user._id, (err, user) => {http://localhost:3000/users/currentUser
-        console.log(req.user.id)
+    User.findById(req.user._id, (err, user) => {
+        // http://localhost:3000/users/currentUser
+            console.log(req.user.id);
         if (err) {
             return next(err);
         }
@@ -25,10 +26,10 @@ router.post('/updateProfile', (req, res, next) => {
         user.email = req.body.email || '';
         user.username = req.body.username || '';
         user.fullname = req.body.fullname || '';
-        // user.profile.username = req.body.username || '';
-        // user.profile.location = req.body.location || '';
-        // user.profile.phoneNumber = req.body.phoneNumber || '';
-        // user.profile.image = req.body.image || '';
+        user.username = req.body.username || '';
+        // user.location = req.body.location || '';
+        // user.phoneNumber = req.body.phoneNumber || '';
+        // user.cookPic = req.body.cookPic || '';
         // user.cook = x || '';
 
         user.save((err) => {
@@ -56,7 +57,7 @@ router.post('/addfood', (req, res, next) => {
         type: req.body.type,
         img: req.body.img,
         options: req.body.options,
-        availability: {text: req.body.availability}
+        availability: req.body.availability
     };
 
     //const errors = req.validationErrors();
@@ -119,7 +120,7 @@ router.post('/addReview', (req, res, next) => {
 
 router.delete('/:userid/reviews/:deleteReviewId', function (req, res, next) {
     const userId = req.params.userid;
-    
+
     User.findById(userId, function (err, foundUser) {
         if (err) {
             return next(err);

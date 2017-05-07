@@ -4,8 +4,7 @@
 "use strict";
 app.controller('reviewController', ["$scope", "reviewFactory", "relevantCook", "$http", 'authFactory', function ($scope, reviewFactory, relevantCook, $http, authFactory) {
 
-    // $scope.reviews = [];
-    // $scope.reviews.push(reviews.data);
+
     $scope.cook = relevantCook;
     console.log(relevantCook);
 

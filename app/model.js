@@ -15,8 +15,10 @@ var FoodSchema = new Schema({
     type: { type: String},
     img: { type: String },
     options: { type: String},
-    availability: [availabilitySchema]
+    availability: {type: String}
 });
+
+
 
 
 // Creates a User Schema. This will be the basis of how user data is stored in the db
@@ -25,22 +27,22 @@ var UserSchema = new Schema({
     email: { type: String },
     fullname: { type: String },
     username: { type: String },
-    password: String,
+    password: { type: String },
     cook: Boolean,
     foods: [FoodSchema],
     location: [Number],
     //favlang: {type: String, required: true},
-    latitude: Number,
-    longitude: Number, // [Long, Lat]
-    htmlverified: String,
+    latitude:  { type: Number },
+    longitude:  { type: Number }, // [Long, Lat]
+    htmlverified: { type: String },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
-    socialId: String,
+    socialId: { type: String },
     rating: { type: Number },
-    provider: String,
-    loginCount: Number,
-    cookPic: String,
-    descrip:String,
+    provider: { type: String },
+    loginCount:  { type: Number },
+    cookPic:{ type: String },
+    descrip:{ type: String },
     reviews: [{type: Schema.Types.ObjectId, ref:'review'}]//population from the reviews schema
 
 });

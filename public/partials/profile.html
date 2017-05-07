@@ -3,7 +3,7 @@
         <div class="col-md-3">
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
-                <div ng-repeat="food in user.foods track by $index" class="profile-userpic">
+                <div class="profile-userpic">
                     <img class="img-responsive" alt="" ng-src="{{cook.cookPic}}">
                 </div>
                 <!-- END SIDEBAR USERPIC -->
@@ -13,8 +13,8 @@
                     <div class="profile-usertitle-name">
                         {{cook.username}}
                     </div>
-                    <div class="profile-usertitle-job">
-                        Type of Food: {{food.type}}
+                    <div ng-repeat="food in user.foods track by $index"  class="profile-usertitle-job">
+                        Type of Food: {{food.dish}}
                     </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->

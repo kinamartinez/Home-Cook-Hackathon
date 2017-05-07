@@ -12,7 +12,7 @@
             <form name="addForm ">
 
                 <div ng-repeat="user in users track by $index" class="media">
-                    <div ng-if="user.cook == true" class="form-group col-md-12 pic well modal-open">
+                <div ng-if="user.cook == true" class="form-group col-md-12 pic well modal-open">
                         <div class="container">
 
                             <a ui-sref="profile({id:user._id})"><h3 class="media-left">
@@ -24,8 +24,6 @@
                                      style="width:250px; height:150px" alt="...">
                                 <div class="media-body">
 
-                                </div>
-                                <div>
                                     <ul class="list-group">
                                         <li class="list-group-item">
                                             <span class="badge"><i class="fa fa-cutlery"
@@ -34,7 +32,7 @@
                                         </li>
                                         <li class="list-group-item">
                                             <span class="badge"><i class="fa fa-money" aria-hidden="true"></i>  </span>
-                                            <strong> Price:</strong> {{food.price}} NIS
+                                            <strong> Availability:</strong> {{food.availability}}
                                         </li>
                                         <li class="list-group-item">
                                             <span class="badge"><i class="fa fa-money" aria-hidden="true"></i>  </span>
@@ -45,17 +43,16 @@
                                                                    aria-hidden="true"></i>  </span>
                                             <strong> Mail:</strong> {{user.email}}
                                         </li>
-                                        <li class="list-group-item">
-                                            <a href="/#/orderForm">
-                                                <button class="btn btn-danger" type="button"><i
-                                                        class="fa fa-credit-card"
-                                                        aria-hidden="true"></i>
-                                                    Start Order
-                                                </button>
-                                            </a>
-                                        </li>
+                                        <!--<li class="list-group-item">-->
+                                            <!--&lt;!&ndash;<a href="/#/orderForm">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<button class="btn btn-danger" type="button"><i&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;class="fa fa-credit-card"&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;aria-hidden="true"></i>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;Start Order&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</button>&ndash;&gt;-->
+                                            <!--</a>-->
+                                        <!--</li>-->
                                     </ul>
-
                                 </div>
                             </div>
                         </div>
@@ -66,28 +63,28 @@
                     <!--<div  ng-if="user.cook == true" class="form-group col-md-12 pic well">-->
 
                     <!--<span>-->
-                    <!--<a ui-sref="profile({id:user._id})"><h4><strong>{{user.fullname}}</strong></h4></a>-->
+                    <!--<a ui-sref="profile({id:user._id})"><h4><strong>{{user.username}}</strong></h4></a>-->
                     <!--<div ng-repeat="food in user.foods track by $index">-->
 
                     <!--<strong> Type Of Food:</strong> {{food.dish}}<br>-->
-                    <!--<i class="fa fa-cutlery" aria-hidden="true"></i> -->
+                    <!--<i class="fa fa-cutlery" aria-hidden="true"></i>-->
                     <!--<br>-->
                     <!--<i class="fa fa-money" aria-hidden="true"></i> Price {{food.price}} NIS-->
                     <!--<br>-->
                     <!--<i class="fa fa-map-marker" aria-hidden="true"></i>-->
                     <!--<br>-->
-                    <!--<a href="/#/orderForm">-->
-                    <!--<button class="btn btn-danger" type="button"><i class="fa fa-credit-card"-->
-                    <!--aria-hidden="true"></i> Start Order-->
-                    <!--</button>-->
-                    <!--</a>-->
+                    <!--&lt;!&ndash;<a href="/#/orderForm">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<button class="btn btn-danger" type="button"><i class="fa fa-credit-card"&ndash;&gt;-->
+                    <!--&lt;!&ndash;aria-hidden="true"></i> Start Order&ndash;&gt;-->
+                    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
 
                     <!--<div class="col-md-6 pull-left"><img class="fotos" ng-src="{{food.img}}"-->
                     <!--style="width:200px; height:150px">-->
                     <!--</div> </div>-->
                     <!--</span>-->
                     <!--</div>-->
-                </div>
+                <!--</div>-->
             </form>
         </div>
     </div>
