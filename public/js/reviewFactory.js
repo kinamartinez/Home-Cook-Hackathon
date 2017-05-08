@@ -7,13 +7,11 @@ app.factory('reviewFactory', function ($http) {
     const reviewFactory = {};
 
     reviewFactory.addReview = function (review, userId) {
-        return $http.post('/account/addReview', review)
+        return $http.post('/review/' + userId, review)
             .then(function (response) {
                 console.log("from the factory");
                 console.log(response);
                 return response.data
-            }, function (err) {
-                console.error(err)
             })
     };
 
@@ -32,6 +30,7 @@ app.factory('reviewFactory', function ($http) {
     reviewFactory.downvote = function (userToDownvote) {
         return $http.put('/review/' + userToDownvote + '/downvote', null)
             .then(function (response) {
+                console.log(response);
                 return response.data;
 
             }, function (err) {
@@ -39,8 +38,8 @@ app.factory('reviewFactory', function ($http) {
             });
     };
 
-    reviewFactory.deleteReview = function (id) {
-        return $http.delete('/review/' + id)
+    reviewFactory.deleteReview = function (reviewId, cookId) {
+        return $http.delete('/review/' + reviewId + '/' + cookId)
             .then(function(response) {
                 return response.data
             })

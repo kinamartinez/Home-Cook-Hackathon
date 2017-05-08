@@ -1,5 +1,5 @@
 .cover {
-    background: url('\images\cover.jpg') no-repeat center fixed;
+    background: url('/images/cover.jpg') no-repeat center fixed;
     background-size: cover;
     height: 700px;
     width: 100%;
@@ -144,11 +144,6 @@
     cursor: pointer;
 }
 
-.cover {
-    background: url('https://www.dropbox.com/home/hackaton?preview=cover.jpg') no-repeat center fixed;
-    background-size: cover;
-    height: 700px;
-}
 
 #hometext {
     text-align: center;
@@ -196,7 +191,7 @@ section {
 }
 
 body {
-    background: #F1F3FA;
+    background: #9CA7AD;
 }
 
 /* Profile container */
@@ -338,12 +333,32 @@ h4 {
     font-size: 25px;
     font-weight: bold;
     color: #e6540c;
+    text-transform: capitalize;
 }
 
 h5 {
     padding: 0;
-    margin: 10px 0 10px 15px;
+    margin: 0px 0 5px 5px;
     font-size: 14px;
     font-weight: 400;
     color: black;
+}
+
+#slides_control > div{
+    height: 200px;
+}
+img{
+    margin:auto;
+    width: 400px;
+}
+#slides_control {
+    position:absolute;
+    width: 400px;
+    left:50%;
+    top:20px;
+    margin-left:-200px;
+}
+
+.badge{
+    /*font-size: 50px;*/
 }

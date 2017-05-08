@@ -46,8 +46,10 @@
 
 
             <a id="brand" href="/" class="navbar-brand">The Home Cook</a>
+
             <ul class="nav navbar-nav navbar-left" ng-hide='currentUser'>
                 <li class="navbar-text"><a ui-sref="map.find" ng-show='currentUser'>Whats Cooking</a></li>
+
             </ul>
         </div>
 
@@ -55,10 +57,20 @@
             <li class="navbar-text"><a ui-sref="account">{{currentUser}} </a></li>
             <li class="navbar-text"><a target="_self" href="/users/logout">Logout</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-left" ng-show='currentUser'>
+            <li><a ui-sref="map.list">What's on the menu?</a></li>
+            <li><a href='https://www.facebook.com/The-Home-Cook-1876953649184054/'>About</a></li>
+        </ul>
+
+
         <ul class="nav navbar-nav navbar-right" ng-hide='currentUser'>
-            <li><a ui-sref="login">Login</a></li>
+            <li><a href='https://www.facebook.com/The-Home-Cook-1876953649184054/'>About</a></li>
+            <li><a ui-sref="map.list">What's on the menu?</a></li>
             <li><a ui-sref="map.join">Join the Cooking Team</a></li>
-            <li><a ui-sref="register">Create a Customer Account</a></li>
+            <li><a ui-sref="login">Login</a></li>
+            <li><a ui-sref="register">
+                <button class="btn btn-info pull-right" type="button"> Register</button>
+            </a></li>
 
         </ul>
 
