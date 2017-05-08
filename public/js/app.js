@@ -75,6 +75,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/home',
                 templateUrl: 'js/components/home/home.tpl.html',
             })
+
+            .state('aboutUs', {
+                url: '/aboutUs',
+                templateUrl: 'partials/aboutUs.html',
+            })
+
             .state('account.addFood', {
                 url: '/addFood',
                 templateUrl: 'partials/addFood.html',

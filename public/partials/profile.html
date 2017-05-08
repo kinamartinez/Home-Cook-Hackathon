@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container main-container">
     <div class="row profile">
         <div class="col-md-3">
             <div class="profile-sidebar">
@@ -32,7 +32,9 @@
                     <button type="button" ng-click="downvote(cook._id)"
                             class="btn btn-danger btn-sm glyphicon glyphicon-thumbs-down"> {{cook.downvotes}}
                     </button>
-
+                    <br/>
+                    <br/>
+                   <strong><a ng-show="currentUser" href="#reviewInput"> Leave a Review </a></strong>
 
                 </div>
 
@@ -44,7 +46,7 @@
         <div class="col-md-9">
             <div class="profile-content">
                 <div class="row-fluid">
-                    <div class="col-sm-10">
+                    <div class="col-sm-12">
 
 
                         <!--***************CAROUSEL****************************-->
@@ -86,7 +88,14 @@
                                             <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
                                             <!--&lt;!&ndash;*********************DISEÑO 2************************************&ndash;&gt;-->
-                                            <img ng-src="{{food.img}}" style="width:400px; height:250px"/>
+                                            <a href="/#/orderForm"> <img ng-src="{{food.img}}"
+                                                                         style="width:400px; height:250px"/>
+                                                <button class="btn btn-danger pull-right" type="button">
+                                                    <i class="fa fa-credit-card"
+                                                       aria-hidden="true"></i>
+                                                    Place Order
+                                                </button>
+                                            </a>
                                             <div class="well">
                                                 <h4>{{food.dish}}</h4>
                                                 "{{food.description}}!!"
@@ -96,11 +105,7 @@
                                                 <br> <span class="badge"><i class="fa fa-clock-o"
                                                                             aria-hidden="true"></i> {{food.availability}}</span>
                                                 <br>
-                                                <button class="btn btn-danger pull-right" type="button">
-                                                    <i class="fa fa-credit-card"
-                                                       aria-hidden="true"></i>
-                                                    Place Order
-                                                </button>
+
                                                 <div class="carousel-caption">
                                                     <h4 class="hidden">{{$index+1}}</h4>
                                                 </div>
@@ -147,30 +152,8 @@
             </div>
             <div class="col-md-12 profile-content">
                 <!-- SIDEBAR MENU -->
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li class="active">
-
-                            <a href="#">
-                                <i class="fa fa-comments" aria-hidden="true"></i>
-                                Leave a Review
-                                <i class="fa fa-plus-circle fa-4x pull-right" aria-hidden="true"></i>
-                            </a>
-
-                        </li>
-                    </ul>
 
 
-                    <form ng-submit="addReview(review)">
-                        <div class="form-group">
-                                    <textarea rows="5" cols="39" type="text" class="form-control"
-                                              placeholder="Add review..." ng-model="review.text"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary pull-right">Go!</button>
-                    </form>
-
-
-                </div>
                 <div ng-repeat="rev in cook.reviews track by $index" class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{rev.author}}</h3>
@@ -187,12 +170,26 @@
                         <i ng-click="deleteReview(rev._id)"
                            class="fa fa-trash pull-right"
                            aria-hidden="true" role="button"></i>
+                    </div>
+                </div><!--/panel-footer-->
+                <a name="reviewInput"></a>
+                <div class="profile-usermenu">
+                    <form ng-show="currentUser">
+                        <h3 class="reevieews">Add a review</h3>
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="review.text" placeholder="Add review...">
+                            <span class="input-group-btn">
+                        <button class="btn btn-info" type="button" ng-click="addReview(review)">Submit</button>
+                        </span>
+                        </div>
+                    </form>
 
-                    </div><!--/panel-footer-->
-                </div><!--/panel-->
-            </div>
+                    <br>
+                </div>
+            </div><!--/panel-->
         </div>
     </div>
+</div>
 
 
-    <br>
+<br>

@@ -12,7 +12,7 @@
             <form name="addForm ">
 
                 <div ng-repeat="user in users track by $index" class="media">
-                    <div ng-if="user.cook == true" class="form-group  pic well modal-open">
+                    <div ng-if="user.cook == true" class="form-group  pic well">
 
 
                         <div ng-repeat="food in user.foods track by $index" class="media-object">
@@ -21,7 +21,7 @@
                                 <strong>{{user.username}}</strong></h3></a>
 
                             <img class="media-object fotos" ng-src="{{food.img}}"
-                                 style="width:300px; height:200px" alt="..."/>
+                                 style="width:365px; height:250px" alt="..."/>
                             <div class="media-body">
 
                                 <ul class="list-group">

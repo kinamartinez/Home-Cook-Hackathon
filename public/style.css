@@ -1,7 +1,18 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+
+.main-container {
+    margin-top: 60px;
+}
+
 .cover {
     background: url('/images/cover.jpg') no-repeat center fixed;
     background-size: cover;
-    height: 700px;
+    height: 100%;
     width: 100%;
 }
 
@@ -125,16 +136,16 @@
 
 .fotos {
     border: 1px;
+    border-radius: 10px;
     display: block;
     margin: auto;
-    height: 200px;
-    border-radius: 10px;
     padding-bottom: 10px;
+    box-shadow: 10px 10px 5px #888888;
 }
 
 .modal-open {
     overflow-y: auto;
-    overflow-x: scroll;
+    overflow-x:scroll;
     max-height: 550px;
     max-width: 550px;
 }
@@ -191,14 +202,17 @@ section {
 }
 
 body {
-    background: #9CA7AD;
+    background: #d3d6db;
+
 }
+
 
 /* Profile container */
 
 .profile {
     margin: 20px 0;
 }
+
 
 /* Profile sidebar */
 
@@ -224,11 +238,16 @@ body {
 
 .profile-usertitle-name {
     color: #5a7391;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 7px;
 }
-
+.reevieews{
+    color: #5a7391;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
 .profile-usertitle-job {
     text-transform: uppercase;
     color: #5b9bd1;
@@ -240,6 +259,7 @@ body {
 .profile-userbuttons {
     text-align: center;
     margin-top: 10px;
+    padding: 10px;
 }
 
 .profile-userbuttons .btn {
@@ -293,12 +313,33 @@ body {
     margin-left: -2px;
 }
 
+
 /* Profile Content */
 
 .profile-content {
     padding: 20px;
     background: #fff;
     min-height: 460px;
+}
+
+.home-btn{
+    border-radius: 0;
+    border: 0!important;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    height: 80px;
+    width: 250px;
+    font-size: 22px;
+}
+
+.home-btn:hover{
+    background-color: #097B96;
+    color: white;
+
+}
+
+.content{
+    padding-top: 28px;
 }
 
 .rightCol1 {
@@ -359,6 +400,16 @@ img{
     margin-left:-200px;
 }
 
-.badge{
-    /*font-size: 50px;*/
+
+
+#aboutus {
+    font-weight: 700;
+    font-size: 5em;
 }
+
+.about{
+    max-width: 282px;
+    margin: 0 5px 20px 5px;
+    padding-top: 19px;
+}
+
