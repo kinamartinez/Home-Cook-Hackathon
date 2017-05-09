@@ -18,7 +18,7 @@ const methodOverride = require('method-override');
 
 
 // Connect to database
-mongoose.connect(process.env.CONNECTION_STRING || "mongodb://localhost/THEHOMECOOK");
+mongoose.connect(process.env.CONNECTION_STRING || "mongodb://localhost/trial5");
 
 
 
