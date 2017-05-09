@@ -12,9 +12,7 @@ router.get('/updateProfile', (req, res, next) => {
 
 router.post('/updateProfile', (req, res, next) => {
 
-
     //const errors = req.validationErrors();
-
 
     User.findById(req.user._id, (err, user) => {
         // http://localhost:3000/users/currentUser

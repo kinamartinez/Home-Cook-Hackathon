@@ -11,11 +11,11 @@
             <!-- Creates Form (novalidate disables HTML validation, Angular will control) -->
             <form name="addForm ">
 
-                <div ng-repeat="user in users track by $index" class="media">
+                <div ng-repeat="user in users  track by $index" ng-show="!$first" class="media">
                     <div ng-if="user.cook == true" class="form-group  pic well">
 
 
-                        <div ng-repeat="food in user.foods track by $index" class="media-object">
+                        <div ng-repeat="food in user.foods  track by $index" ng-show="!$first" class="media-object">
 
                             <a ui-sref="profile({id:user._id})"><h3 class="media-left">
                                 <strong>{{user.username}}</strong></h3></a>
