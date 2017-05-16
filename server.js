@@ -18,7 +18,7 @@ const methodOverride = require('method-override');
 
 
 // Connect to database
-mongoose.connect("mongodb://localhost/trial3");
+mongoose.connect(process.env.CONNECTION_STRING || "mongodb://localhost/trial5");
 
 
 
@@ -65,21 +65,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-
-
-
-
-
-
-
-
-
 // Backend / API
 
-var userRoutes = require('./app/authRoutes');
-var accountRoutes = require('./app/accountRoutes');
+var userRoutesRouter = require('./app/authRoutes');
+var accountRoutesRouter = require('./app/accountRoutes');
 
-var reviewRoute = require('./app/reviewRoute');
+var reviewRouteRouter = require('./app/reviewRoute');
 
 
 var ensureAuthenticated = function(req, res, next) {
@@ -90,11 +81,13 @@ var ensureAuthenticated = function(req, res, next) {
     }
 };
 
-app.use('/users', userRoutes);
-app.use('/account', accountRoutes);
-app.use('/review', reviewRoute);
-app.use('/account', ensureAuthenticated, accountRoutes);
-app.use('/review', reviewRoute);
+app.use('/users', userRoutesRouter);
+app.use('/account', ensureAuthenticated, accountRoutesRouter);
+app.use('/review', reviewRouteRouter);
+
+
+
+
 
 
 // Logging and Parsing

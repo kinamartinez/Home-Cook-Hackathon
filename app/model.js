@@ -1,22 +1,24 @@
 // Pulls Mongoose dependency for creating schemas
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var plm = require('passport-local-mongoose')
+var plm = require('passport-local-mongoose');
 
 var availabilitySchema = new Schema({
- text: String
+    text: String
 
 });
 
 var FoodSchema = new Schema({
-    dish: { type: String},
-    description: { type: String},
+    dish: { type: String },
+    description: { type: String },
     price: { type: Number },
-    type: { type: String},
+    type: { type: String },
     img: { type: String },
-    options: { type: String},
-    availability: [availabilitySchema]
+    options: { type: String },
+    availability: { type: String }
 });
+
+
 
 
 // Creates a User Schema. This will be the basis of how user data is stored in the db
@@ -25,24 +27,27 @@ var UserSchema = new Schema({
     email: { type: String },
     fullname: { type: String },
     username: { type: String },
-    password: String,
+    password: { type: String },
     cook: Boolean,
     foods: [FoodSchema],
     location: [Number],
+    place: { type: String },
     //favlang: {type: String, required: true},
-    latitude: Number,
-    longitude: Number, // [Long, Lat]
-    htmlverified: String,
+    latitude: { type: Number },
+    longitude: { type: Number }, // [Long, Lat]
+    htmlverified: { type: String },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
-    socialId: String,
+    socialId: { type: String },
     rating: { type: Number },
-    provider: String,
-    loginCount: Number,
-
-    cookPic: String,
-    descrip:String,
-    reviews: [{type: Schema.Types.ObjectId, ref:'review'}]//population from the reviews schema
+    provider: { type: String },
+    loginCount: { type: Number },
+    cookPic: { type: String },
+    descrip: { type: String },
+    phoneNumber: { type: Number },
+    reviews: [{ type: Schema.Types.ObjectId, ref: 'review' }], //population from the reviews schema
+    upvotes: {type: Number, default:0 },
+    downvotes: {type: Number, default:0 },
 
 });
 

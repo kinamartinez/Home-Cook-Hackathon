@@ -1,7 +1,19 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+.main-container {
+    margin-top: 60px;
+}
+
 .cover {
     background: url('/images/cover.jpg') no-repeat center fixed;
     background-size: cover;
-    height: 700px;
+    height: 100%;
     width: 100%;
 }
 
@@ -125,18 +137,24 @@
 
 .fotos {
     border: 1px;
-    border-radius: 10px;
+      display: block;
+    margin: auto;
+
+
 }
 
 .modal-open {
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x:scroll;
     max-height: 550px;
+    max-width: 550px;
 }
 
 .glyphicon-thumbs-down,
 .glyphicon-thumbs-up {
     cursor: pointer;
 }
+
 
 #hometext {
     text-align: center;
@@ -183,6 +201,11 @@ section {
     width: 150px;
 }
 
+body {
+    background: #d3d6db;
+
+}
+
 
 /* Profile container */
 
@@ -215,11 +238,16 @@ section {
 
 .profile-usertitle-name {
     color: #5a7391;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 7px;
 }
-
+.reevieews{
+    color: #5a7391;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
 .profile-usertitle-job {
     text-transform: uppercase;
     color: #5b9bd1;
@@ -231,6 +259,7 @@ section {
 .profile-userbuttons {
     text-align: center;
     margin-top: 10px;
+    padding: 10px;
 }
 
 .profile-userbuttons .btn {
@@ -291,4 +320,105 @@ section {
     padding: 20px;
     background: #fff;
     min-height: 460px;
+}
+
+.home-btn{
+    border-radius: 0;
+    border: 0!important;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    height: 80px;
+    width: 250px;
+    font-size: 22px;
+}
+
+.home-btn:hover{
+    background-color: #097B96;
+    color: white;
+
+}
+
+.content{
+    padding-top: 28px;
+}
+
+.rightCol1 {
+
+    float: right;
+    margin-top: 10px;
+}
+
+.theBox2 {
+    border-radius: 5px;
+    width: 483px;
+    height: 244px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0px 40px 15px;
+    padding-left: 200px;
+    box-sizing: border-box;
+}
+
+.txtBox2 {
+    position: absolute;
+    height: 244px;
+    width: 190px;
+    bottom: 0;
+    left: 0;
+
+}
+
+h4 {
+    padding: 0;
+    margin: 5px 5px 5px 10px;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    text-transform: capitalize;
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+h5 {
+    padding: 0;
+    margin: 0px 0 5px 5px;
+    font-size: 14px;
+    font-weight: 400;
+    color: black;
+}
+
+#slides_control > div{
+    height: 200px;
+}
+img{
+    margin:auto;
+    width: 400px;
+}
+#slides_control {
+    position:absolute;
+    width: 400px;
+    left:50%;
+    top:20px;
+    margin-left:-200px;
+}
+
+
+
+#aboutus {
+    font-weight: 700;
+    font-size: 5em;
+}
+
+.about{
+    max-width: 282px;
+    margin: 0 5px 20px 5px;
+    padding-top: 19px;
+}
+
+.desc{
+    text-align: center;
+    padding-top: 15%;
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+    vertical-align: middle;
+       color: white;
+    font-weight: bold;
 }

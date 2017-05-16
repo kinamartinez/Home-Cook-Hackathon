@@ -40,7 +40,7 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
         $scope.$apply(function(){
             $scope.formData.latitude = parseFloat(gservice.clickLat).toFixed(3);
             $scope.formData.longitude = parseFloat(gservice.clickLong).toFixed(3);
-            $scope.formData.htmlverified = "Hey (You are not in this location...)";
+            $scope.formData.htmlverified = "(Hey You are not in this location...)";
         });
     });
 
@@ -50,7 +50,6 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
     // ----------------------------------------------------------------------------
     // Creates a new user based on the form fields
     $scope.createUser = function() {
-
         // Grabs all of the text box fields
         var userData = {
             username: $scope.formData.username,

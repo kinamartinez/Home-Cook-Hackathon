@@ -6,26 +6,18 @@ var app = angular.module('meanMapApp', [
     'geolocation',
     'gservice'
 
-
-    // 'auth0.lock',
-    // 'angular-jwt',
-    // 'angular-storage',
-    // 'ngMaterial',
-    // 'auth0',
-    // 'profileController',
-    // 'toolbarController'
 ]);
 
 
 // Configures Angular routing -- showing the relevant view and controller when needed.
 //'authProvider','$httpProvider', 'jwtInterceptorProvider',
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide',
-    function($stateProvider, $urlRouterProvider, $locationProvider) {
+    function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
         $locationProvider.html5Mode(true);
 
         $stateProvider
-        // Join Team Control Panel
+
             .state('map.join', {
                 url: '/join',
                 controller: 'authCtrl',
@@ -33,6 +25,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
 
                 // Find Home Cooks Control Panel
             })
+
 
             .state('map.list', {
                 url: '/list',
@@ -58,8 +51,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                         let userId = $stateParams.id;
                         console.log("getting review from: ", "/review/" + userId);
                         return $http.get("/review/" + userId).then(function (theWholeUserObj) {
-                            console.log("the next obj comes from app.js - Profile State");
-                            console.log(theWholeUserObj.data);
+                            // console.log("the next obj comes from app.js - Profile State");
+                            // console.log(theWholeUserObj.data);
+                            // console.log("this is the users reviews");
+                            // console.log(theWholeUserObj.data.reviews);
                             return theWholeUserObj.data;
                         })
                     }]
@@ -79,6 +74,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/home',
                 templateUrl: 'js/components/home/home.tpl.html',
             })
+
+            .state('aboutUs', {
+                url: '/aboutUs',
+                templateUrl: 'partials/aboutUs.html',
+            })
+
             .state('account.addFood', {
                 url: '/addFood',
                 templateUrl: 'partials/addFood.html',
@@ -95,7 +96,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                 url: '/find',
                 templateUrl: 'partials/queryForm.html',
                 controller: 'authCtrl'
-                    // All else forward to the Join Home Cook Team Control Panel
+                // All else forward to the Join Home Cook Team Control Panel
             })
             .state('register', {
                 url: '/register',
@@ -122,13 +123,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provi
                     }
                 }
             });
-        // lockProvider.init({
-        //     clientID: '55GqM7lzjXdbdFhkBlb7BSUQY2IvRUVk',
-        //     domain: 'kinamartinez.eu.auth0.com',
-        //     options: {
-        //         _idTokenVerification: false
-        //     }
-        // });
 
         $urlRouterProvider.otherwise('/home');
     }
